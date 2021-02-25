@@ -51,14 +51,13 @@ class App extends Component{
   render() {
     return (
       <div>
+        <p className="App-header">A Bear of a Project</p>
+        <p className="App-body">Username:</p>
+        <p className="App-body">Add a Stock:</p>
+
         <button onClick = {this.fetchData}>click to fetch data</button>
         {this.renderData()}
       
-        <p>A Bear of a Project</p>
-    
-        <p className="App-body">Username:</p>
-
-        <p className="App-body">Add a Stock:</p>
       </div>
 
 
