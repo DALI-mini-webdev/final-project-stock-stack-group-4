@@ -53,10 +53,17 @@ class App extends Component{
       <div>
         <button onClick = {this.fetchData}>click to fetch data</button>
         {this.renderData()}
+      
+        <p>A Bear of a Project</p>
+    
+        <p className="App-body">Username:</p>
+
+        <p className="App-body">Add a Stock:</p>
       </div>
+
+
     );
   }
-
 }
 
 export default App;
