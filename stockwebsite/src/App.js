@@ -1,10 +1,15 @@
 import './App.css';
+import Dropdown from 'react-bootstrap/Dropdown';
+import DropdownButton from 'react-bootstrap/DropdownButton';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 import axios from 'axios';
 import {Component} from 'react';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import StockBoard from './components/StockBoard';
+
 
 class App extends Component{
   constructor(props){
@@ -68,12 +73,10 @@ class App extends Component{
       <Dropdown.Item as="button">AAPL</Dropdown.Item>
       <Dropdown.Item as="button">NFLX</Dropdown.Item>
       <Dropdown.Item as="button">PNRA</Dropdown.Item>
+
       </DropdownButton>
 
-   
-   
-  
-    
+
 
         <p>A Bear of a Project</p>
     
@@ -87,8 +90,9 @@ class App extends Component{
   
 
 
-    );
-  }
-}
+    )
+    
+    }}
+
 
 export default App;
