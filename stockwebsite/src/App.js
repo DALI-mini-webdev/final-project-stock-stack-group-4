@@ -1,6 +1,11 @@
 import './App.css';
+import Dropdown from 'react-bootstrap/Dropdown';
+import DropdownButton from 'react-bootstrap/DropdownButton';
+import 'bootstrap/dist/css/bootstrap.min.css';
+
 import axios from 'axios';
 import {Component} from 'react';
+
 
 class App extends Component{
   constructor(props){
@@ -50,19 +55,39 @@ class App extends Component{
 
   render() {
     return (
-      <div>
-        <p className="App-header">A Bear of a Project</p>
-        <p className="App-body">Username:</p>
-        <p className="App-body">Add a Stock:</p>
-
+      <div className = "App-header">
         <button onClick = {this.fetchData}>click to fetch data</button>
         {this.renderData()}
       
+
+      <p className="App-body">Add a Stock:</p>
+
+      
+      
+  
+      <DropdownButton id="dropdown-item-button" title="Add a Stock">
+      <Dropdown.Item as="button">AAPL</Dropdown.Item>
+      <Dropdown.Item as="button">NFLX</Dropdown.Item>
+      <Dropdown.Item as="button">PNRA</Dropdown.Item>
+</DropdownButton>
+
+   
+   
+  
+    
+
+        <p>A Bear of a Project</p>
+    
+        <p className="App-body">Username:</p>
+
+        <p className="App-body">Add a Stock:</p>
       </div>
+  
+     
 
+    )
+    
+    }}
 
-    );
-  }
-}
 
 export default App;
