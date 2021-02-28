@@ -21,6 +21,7 @@ class App extends Component{
       params:{ 
          function: "TIME_SERIES_DAILY_ADJUSTED",
          symbol: "IBM", //this can be changed depending on which stock we want
+         //^^^^ this can be a variable, and be based on what we choose from the dropdown menu
          apikey: "1WKONX2HMTRYF2JO",
    }})
 

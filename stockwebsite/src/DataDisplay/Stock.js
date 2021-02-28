@@ -3,7 +3,11 @@ import React, {Component} from 'react';
 class Stock extends Component{
     constructor(props){
         super(props);
-        this.state = {percentChange: '1%'};
+        this.state = {percentChange: ''};
+    }
+
+    changeState = () =>{
+        this.setState({percentChange: this.state.data});
     }
 
     render(){
