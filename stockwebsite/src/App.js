@@ -2,10 +2,10 @@ import './App.css';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
 import axios from 'axios';
 import {Component} from 'react';
-
+import Stock from './DataDisplay/Stock';
+import React from 'react';
 
 class App extends Component{
   constructor(props){
@@ -44,6 +44,7 @@ class App extends Component{
      
       return(
         <div>
+          
           Open: {this.state.data["1. open"]}
         </div>
       )
@@ -55,7 +56,9 @@ class App extends Component{
 
   render() {
     return (
+     
       <div className = "App-header">
+        <Stock />
         <button onClick = {this.fetchData}>click to fetch data</button>
         {this.renderData()}
       
@@ -83,9 +86,8 @@ class App extends Component{
         <p className="App-body">Add a Stock:</p>
       </div>
   
-     
-
     )
+      
     
     }}
 
