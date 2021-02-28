@@ -2,7 +2,6 @@ import './App.css';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import 'bootstrap/dist/css/bootstrap.min.css';
-
 import axios from 'axios';
 import {Component} from 'react';
 
@@ -11,9 +10,12 @@ class App extends Component{
   constructor(props){
     super(props);
     this.state = {
+      isLoggedIn: false,
       data: []
     }
+    this.handleClick = this.handleClick.bind(this);
   }
+
 
   fetchData = () =>{
     
@@ -53,39 +55,86 @@ class App extends Component{
     }
   }
 
+  handleClick() {
+    this.setState ={ isLoggedIn: true} 
+    console.log("button clicked")
+
+  }
+
+
   render() {
-    return (
-      <div className = "App-header">
-        <button onClick = {this.fetchData}>click to fetch data</button>
-        {this.renderData()}
-      
 
-      <p className="App-body">Add a Stock:</p>
+    const onChangeFunction = (event) => {
+      console.log(event.target.value);
+      document.addEventListener("keyup", function(event) {
+        if (event.code === 'Enter') {
+          var username = event.target.value
+          this.state = { isLoggedin: true };
+          console.log(this.state.isLoggedin);
+        }
+      });
 
-      
-      
+    }
+
+    if(this.state.isLoggedIn = true) {
+      console.log(this.state.isLoggedin);
+      console.log("true option");
+      return (
+        <div className = "App-header">
   
-      <DropdownButton id="dropdown-item-button" title="Add a Stock">
-      <Dropdown.Item as="button">AAPL</Dropdown.Item>
-      <Dropdown.Item as="button">NFLX</Dropdown.Item>
-      <Dropdown.Item as="button">PNRA</Dropdown.Item>
-</DropdownButton>
+          <p className="Title">A Bear of a Project</p>
+          <p className="Title-line">______________</p>
+  
+  
+          
+          <p className="Name-enter">Enter your username below:</p>
+          <input type="text" onChange={onChangeFunction}/>
+          <p className="App-body">Add a Stock:</p>
+  
+          <button  onClick = {this.fetchData}>click to fetch data</button>
+          {this.renderData()}
+  
+          <DropdownButton class="Button-style" id="dropdown-item-button" title="Add a Stock">
+          <Dropdown.Item as="button">AAPL</Dropdown.Item>
+          <Dropdown.Item as="button">NFLX</Dropdown.Item>
+          <Dropdown.Item as="button">PNRA</Dropdown.Item>
+          </DropdownButton>
+  
+          <br></br>
+          <p></p>
+  
+        </div>
+      )}
 
-   
-   
+      if(this.state.isLoggedIn = false) {
+        console.log(this.state.isLoggedin);
+        console.log("false option");
+        return(
+          <div className = "App-header">
+  
+          <p className="Title">A Bear of a Project</p>
+          <p className="Title-line">______________</p>
+  
+  
+          
+          <p className="Name-enter">Enter your username below:</p>
+          <input type="text" onChange={onChangeFunction}/>
+  
+  
+          <br></br>
+          <p></p>
+  
+        </div>
+  
+        )
+    }
+
+       
+  
+      
+      
   
     
-
-        <p>A Bear of a Project</p>
-    
-        <p className="App-body">Username:</p>
-
-        <p className="App-body">Add a Stock:</p>
-      </div>
-  
-     
-
-    )
     
     }}
 
