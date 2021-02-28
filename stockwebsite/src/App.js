@@ -1,13 +1,11 @@
 import './App.css';
-<<<<<<< HEAD
-import './App.css';
 import Dropdown from 'react-bootstrap/Dropdown';
 import DropdownButton from 'react-bootstrap/DropdownButton';
 import 'bootstrap/dist/css/bootstrap.min.css';
-=======
+
 import axios from 'axios';
 import {Component} from 'react';
->>>>>>> 2b38f61d8038571712abc1d595331ef7ef80f3f8
+
 
 class App extends Component{
   constructor(props){
@@ -57,11 +55,11 @@ class App extends Component{
 
   render() {
     return (
-      <div>
+      <div className = "App-header">
         <button onClick = {this.fetchData}>click to fetch data</button>
         {this.renderData()}
       
-<<<<<<< HEAD
+
       <p className="App-body">Add a Stock:</p>
 
       
@@ -73,22 +71,23 @@ class App extends Component{
       <Dropdown.Item as="button">PNRA</Dropdown.Item>
 </DropdownButton>
 
-    </div>
    
-    );}
+   
+  
     
-=======
+
         <p>A Bear of a Project</p>
     
         <p className="App-body">Username:</p>
 
         <p className="App-body">Add a Stock:</p>
       </div>
+  
+     
 
+    )
+    
+    }}
 
-    );
-  }
-}
->>>>>>> 2b38f61d8038571712abc1d595331ef7ef80f3f8
 
 export default App;
