@@ -125,7 +125,7 @@ class App extends Component{
   
   
           
-          <p className="Name-enter">Enter your username below:</p>
+          <p className="Name-enter">Enter Your Username Below:</p>
           <input type="text" onChange={onChangeFunction}/>
           <br></br>
           <br></br>
