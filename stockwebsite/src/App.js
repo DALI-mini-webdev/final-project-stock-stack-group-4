@@ -90,9 +90,6 @@ class App extends Component{
   
           <p className="Title">A Bear of a Project</p>
           <p className="Title-line">______________</p>
-
-          {/* <h1>{ sayHello }</h1> */}
-
           
           <button  onClick = {this.fetchData}>click to fetch data</button>
           {this.renderData()}
