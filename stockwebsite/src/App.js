@@ -15,6 +15,8 @@ class App extends Component{
     }
   }
 
+  stockData = this.state.data
+
   fetchData = () =>{
     
     axios.get("https://www.alphavantage.co/query", {
@@ -60,6 +62,7 @@ class App extends Component{
      
       <div className = "App-header">
         <Stock />
+        <StockComponent data = {this.state.data}/>
         <button onClick = {this.fetchData}>click to fetch data</button>
         {this.renderData()}
       
