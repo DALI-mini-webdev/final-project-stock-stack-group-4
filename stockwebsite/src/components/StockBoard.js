@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import Firebase from '../firestore/index';
-import StockPosting from './StockPosting';
+import Stock from './Stock';
 import axios from 'axios';
+import './Stocks.css';
 
 
 class StockBoard extends Component {
@@ -10,12 +11,20 @@ class StockBoard extends Component {
     this.state = {
       data:  [],
       allStocks: [],
+      name: '',
       open: '',
       close: '',
       id: 0,
     }
   }
- 
+
+  deletePosting = () => {
+    this.props.delete(this.props.id)
+    console.log("deleted")
+  }
+
+
+
 
   saveStock = (username, sName) => { 
       //username and stock Name parameters need to be filled with input from the text box and drop down
@@ -23,7 +32,8 @@ class StockBoard extends Component {
     Firebase.db.collection("/users/"+username+"/stocks").doc(sName).set({
       open: this.state.open,
       close: this.state.close,
-      id: this.state.id
+      id: this.state.id,
+      name: sName
     }).then(ref => {
       this.setState({
         id: this.state.id + 1,
@@ -79,6 +89,7 @@ class StockBoard extends Component {
     this.setState({open: 134.5});
     this.setState({close: 135.6}); //madde up numbers for now 
   
+  
     })
     .catch((error) => {
       console.log(error);
@@ -91,29 +102,34 @@ class StockBoard extends Component {
       
       const posts = this.state.allStocks;
       const allPosts = posts.map((stock) => {
+          this.fetchData(stock);
           return (
-            <StockPosting 
+            <Stock classname="stockComponent"
               open= {stock.open}
               close= {stock.close}
               id={posts.id}
+              name = {stock.name}
             />
           );
         }
       );
     return (
       <div>
-        <p> Stock Board </p>
+        <p className="center"> Stock Board </p>
         
-       {this.fetchData('AAPL')}
-        <p>Open: {this.state.open}</p>
-
+        {/* right now, the user and stock passed to the "saveStock" function is hard-coded - needs
+        to be changed to the input from the text box and drop down  */}
+        <button className="center" onClick={this.saveStock('Maria', 'HD')}> add stock to portfolio</button>
+        <button className="center" onClick={this.deletePosting}>Delete stock from portfolio </button>
+       
+        {/*also needs to be changed to the username from the text box instead of hard coded*/ }
         {this.fetchStocks('Maria')}
+
+        <div className="allPosts">
         {allPosts}
+        </div>
+       
 
-        {this.saveStock('Maria', 'GE')}
-
-
-          
       
       </div>
     );

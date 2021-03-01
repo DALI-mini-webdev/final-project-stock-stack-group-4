@@ -1,0 +1,23 @@
+.stock {
+  width: 20rem;
+  height: 200px;
+  background-color: rgb(95, 88, 182);
+  margin: 10px;
+  display: inline-block;
+  text-align: center;
+}
+
+.stockComponent{
+    text-align: center;
+}
+
+.allPosts{
+    text-align: center;
+}
+
+.center {
+    display: block;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
