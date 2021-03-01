@@ -4,7 +4,8 @@ import DropdownButton from 'react-bootstrap/DropdownButton';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
 import {Component} from 'react';
-
+import Stock from './DataDisplay/Stock';
+import React from 'react';
 
 class App extends Component{
   constructor(props){
@@ -23,6 +24,7 @@ class App extends Component{
       params:{ 
          function: "TIME_SERIES_DAILY_ADJUSTED",
          symbol: "IBM", //this can be changed depending on which stock we want
+         //^^^^ this can be a variable, and be based on what we choose from the dropdown menu
          apikey: "1WKONX2HMTRYF2JO",
    }})
 
@@ -46,6 +48,7 @@ class App extends Component{
      
       return(
         <div>
+          
           Open: {this.state.data["1. open"]}
         </div>
       )
@@ -90,7 +93,7 @@ class App extends Component{
           <p className="Name-enter">Enter your username below:</p>
           <input type="text" onChange={onChangeFunction}/>
           <p className="App-body">Add a Stock:</p>
-  
+          <Stock />
           <button  onClick = {this.fetchData}>click to fetch data</button>
           {this.renderData()}
   
@@ -129,12 +132,8 @@ class App extends Component{
         )
     }
 
-       
-  
       
       
-  
-    
     
     }}
 
