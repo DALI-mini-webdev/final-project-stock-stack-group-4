@@ -4,8 +4,10 @@ import DropdownButton from 'react-bootstrap/DropdownButton';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
 import {Component} from 'react';
-import Stock from './DataDisplay/Stock';
+import StockBoard from './components/StockBoard';
+import Stock from './components/Stock';
 import React from 'react';
+
 
 class App extends Component{
   constructor(props){
@@ -58,12 +60,11 @@ class App extends Component{
     }
   }
 
-  handleClick() {
+  handleClick(event) {
     this.setState ={ isLoggedIn: true} 
     console.log("button clicked")
 
   }
-
 
   render() {
 
@@ -72,36 +73,40 @@ class App extends Component{
       document.addEventListener("keyup", function(event) {
         if (event.code === 'Enter') {
           var username = event.target.value
-          this.state = { isLoggedin: true };
-          console.log(this.state.isLoggedin);
+          this.setState = ({ isLoggedIn: true });
+          console.log(this.state.isLoggedIn);
         }
+      return username
       });
 
     }
 
-    if(this.state.isLoggedIn = true) {
-      console.log(this.state.isLoggedin);
+    if(this.state.isLoggedIn === true) {
+      console.log(this.state.isLoggedIn);
       console.log("true option");
+      // var sayHello = 'welcome' + username
       return (
         <div className = "App-header">
   
           <p className="Title">A Bear of a Project</p>
           <p className="Title-line">______________</p>
-  
-  
+
+          {/* <h1>{ sayHello }</h1> */}
+
           
-          <p className="Name-enter">Enter your username below:</p>
-          <input type="text" onChange={onChangeFunction}/>
-          <p className="App-body">Add a Stock:</p>
-          <Stock />
           <button  onClick = {this.fetchData}>click to fetch data</button>
           {this.renderData()}
   
+
+          <p className="App-body">Add a Stock:</p>
+          <Stock />
           <DropdownButton class="Button-style" id="dropdown-item-button" title="Add a Stock">
           <Dropdown.Item as="button">AAPL</Dropdown.Item>
           <Dropdown.Item as="button">NFLX</Dropdown.Item>
           <Dropdown.Item as="button">PNRA</Dropdown.Item>
           </DropdownButton>
+
+          <StockBoard></StockBoard>
   
           <br></br>
           <p></p>
@@ -109,8 +114,8 @@ class App extends Component{
         </div>
       )}
 
-      if(this.state.isLoggedIn = false) {
-        console.log(this.state.isLoggedin);
+      if(this.state.isLoggedIn === false) {
+        console.log(this.state.isLoggedIn);
         console.log("false option");
         return(
           <div className = "App-header">
@@ -122,20 +127,20 @@ class App extends Component{
           
           <p className="Name-enter">Enter your username below:</p>
           <input type="text" onChange={onChangeFunction}/>
-  
-  
           <br></br>
-          <p></p>
-  
-        </div>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+
+          </div>
   
         )
     }
-
-      
-      
     
-    }}
+    }
+  }
+
 
 
 export default App;
