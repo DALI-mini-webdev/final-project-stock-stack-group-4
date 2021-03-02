@@ -57,12 +57,19 @@ class App extends Component{
     }
   }
 
+  chooseStock = (stockName) =>{
+    //when I choose a certain stock from the dropdown menu, save its name as a variable
+    //call Meria's method on stockName
+    stockName.fetchData();
+    stockName.renderData();
+  }
+
   render() {
     return (
      
       <div className = "App-header">
-        <Stock />
-        <StockComponent data = {this.state.data}/>
+       
+        <Stock data = {this.state.data}/>
         <button onClick = {this.fetchData}>click to fetch data</button>
         {this.renderData()}
       
@@ -73,15 +80,12 @@ class App extends Component{
       
   
       <DropdownButton id="dropdown-item-button" title="Add a Stock">
-      <Dropdown.Item as="button">AAPL</Dropdown.Item>
-      <Dropdown.Item as="button">NFLX</Dropdown.Item>
-      <Dropdown.Item as="button">PNRA</Dropdown.Item>
-</DropdownButton>
+      <Dropdown.Item as="button" onClick = {()=>this.chooseStock("AAPL")}>AAPL</Dropdown.Item>
+      <Dropdown.Item as="button" onClick = {()=>this.chooseStock("NFLX")}>NFLX</Dropdown.Item>
+      <Dropdown.Item as="button" onClick = {()=>this.chooseStock("PNRA")}>PNRA</Dropdown.Item>
+      </DropdownButton>
 
    
-   
-  
-    
 
         <p>A Bear of a Project</p>
     
