@@ -23,9 +23,6 @@ class StockBoard extends Component {
     console.log("deleted")
   }
 
-
-
-
   saveStock = (username, sName) => { 
       //username and stock Name parameters need to be filled with input from the text box and drop down
    
@@ -64,8 +61,6 @@ class StockBoard extends Component {
         console.log(err.message)
       })
   }
-
-
 
   fetchData = (stock) =>{
     axios.get("https://www.alphavantage.co/query", {
@@ -119,8 +114,8 @@ class StockBoard extends Component {
         
         {/* right now, the user and stock passed to the "saveStock" function is hard-coded - needs
         to be changed to the input from the text box and drop down  */}
-        <button className="center" onClick={this.saveStock('Maria', 'HD')}> add stock to portfolio</button>
-        <button className="center" onClick={this.deletePosting}>Delete stock from portfolio </button>
+        <button className="center" onClick={this.saveStock('Maria', 'HD')}> Add Stock To Portfolio</button>
+        <button className="center" onClick={this.deletePosting}>Delete Stock From Portfolio </button>
        
         {/*also needs to be changed to the username from the text box instead of hard coded*/ }
         {this.fetchStocks('Maria')}
