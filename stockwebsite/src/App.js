@@ -102,7 +102,6 @@ class App extends Component{
           <br></br>
           <br></br>
           <br></br>
-          <br></br>
 
       <DropdownButton id="dropdown-item-button" title="Add a Stock">
       <Dropdown.Item as="button" onClick = {()=>this.chooseStock("AAPL")}>AAPL</Dropdown.Item>
