@@ -95,13 +95,14 @@ class App extends Component{
       var sayHello = 'welcome, ' + this.state.username
       return (
         <div className = "App-header">
-          
+
           
           <p className="Title">A Bear of a Project</p>
           <p className="Title-line">______________</p>
 
           <h1 className="Welcome">{ sayHello }</h1>
 
+          <br></br>
           <br></br>
           <br></br>
 
@@ -144,8 +145,8 @@ class App extends Component{
           
 
           
-          <button  onClick = {this.fetchData}>click to fetch data</button>
-          {this.renderData()}
+          {/* <button  onClick = {this.fetchData}>click to fetch data</button>
+          {this.renderData()} */}
   
 
 
