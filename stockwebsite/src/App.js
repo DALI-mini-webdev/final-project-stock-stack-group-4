@@ -16,7 +16,6 @@ class App extends Component{
       isLoggedIn: false,
       data: []
     }
-    this.handleClick = this.handleClick.bind(this);
   }
 
 
@@ -60,38 +59,31 @@ class App extends Component{
     }
   }
 
-  handleClick(event) {
-    this.setState ={ isLoggedIn: true} 
+  handleClick = (event) => {
+    this.setState({ isLoggedIn: true})
     console.log("button clicked")
+    
+  }
 
+  onChangeFunction = (event) => {
+    this.setState({username: event.target.value})
   }
 
   render() {
 
-    const onChangeFunction = (event) => {
-      console.log(event.target.value);
-      document.addEventListener("keyup", function(event) {
-        if (event.code === 'Enter') {
-          var username = event.target.value
-          this.setState = ({ isLoggedIn: true });
-          console.log(this.state.isLoggedIn);
-        }
-      return username
-      });
-
-    }
+    
 
     if(this.state.isLoggedIn === true) {
       console.log(this.state.isLoggedIn);
       console.log("true option");
-      // var sayHello = 'welcome' + username
+      var sayHello = 'welcome, ' + this.state.username
       return (
         <div className = "App-header">
   
           <p className="Title">A Bear of a Project</p>
           <p className="Title-line">______________</p>
 
-          {/* <h1>{ sayHello }</h1> */}
+          <h1 className="Welcome">{ sayHello }</h1>
 
           
           <button  onClick = {this.fetchData}>click to fetch data</button>
@@ -114,10 +106,10 @@ class App extends Component{
         </div>
       )}
 
-      if(this.state.isLoggedIn === false) {
-        console.log(this.state.isLoggedIn);
-        console.log("false option");
-        return(
+    if(this.state.isLoggedIn === false) {
+      console.log(this.state.isLoggedIn);
+      console.log("false option");
+      return(
           <div className = "App-header">
   
           <p className="Title">A Bear of a Project</p>
@@ -126,7 +118,9 @@ class App extends Component{
   
           
           <p className="Name-enter">Enter your username below:</p>
-          <input type="text" onChange={onChangeFunction}/>
+          <input type="text" onChange={this.onChangeFunction}/>
+          <br></br>
+          <button onClick={this.handleClick}> Submit </button>
           <br></br>
           <br></br>
           <br></br>
