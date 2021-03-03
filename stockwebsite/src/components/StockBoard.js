@@ -138,8 +138,8 @@ class StockBoard extends Component {
         <p className="center"> Stock Board </p>
         
 
-        <button className="center" onClick={() => this.saveStock(this.props.username, this.props.stock)}> add stock to portfolio</button>
-        <button className="center" onClick={this.deletePosting}>Delete stock from portfolio </button>
+        <button className="center" onClick={() => this.saveStock(this.props.username, this.props.stock)}> Add Stock to Portfolio</button>
+        <button className="center" onClick={this.deletePosting}>Delete Stock From Portfolio </button>
 
         <button className="center" onClick={() => this.fetchStocks(this.props.username)}>Refresh</button>
         <div className="allPosts">
@@ -154,5 +154,3 @@ class StockBoard extends Component {
 }
 
 export default StockBoard;
-
-
