@@ -20,10 +20,6 @@ class App extends Component{
   }
 
 
-  stockData = this.state.data
-
-
-
   fetchData = () =>{
     
     axios.get("https://www.alphavantage.co/query", {
@@ -66,8 +62,6 @@ class App extends Component{
 
 
   chooseStock = (stockName) =>{
-    //when I choose a certain stock from the dropdown menu, save its name as a variable
-    //call Meria's method on stockName
     stockName.fetchData();
     stockName.renderData();
   }
@@ -104,7 +98,32 @@ class App extends Component{
       <DropdownButton id="dropdown-item-button" title="Add a Stock">
       <Dropdown.Item as="button" onClick = {()=>this.chooseStock("AAPL")}>AAPL</Dropdown.Item>
       <Dropdown.Item as="button" onClick = {()=>this.chooseStock("NFLX")}>NFLX</Dropdown.Item>
-      <Dropdown.Item as="button" onClick = {()=>this.chooseStock("PNRA")}>PNRA</Dropdown.Item>
+      <Dropdown.Item as="button" onClick = {()=>this.chooseStock("IRBT")}>IRBT</Dropdown.Item>
+      <Dropdown.Item as="button" onClick = {()=>this.chooseStock("UPWK")}>UPWK</Dropdown.Item>
+      <Dropdown.Item as="button" onClick = {()=>this.chooseStock("FVRR")}>FVRR</Dropdown.Item>
+      <Dropdown.Item as="button" onClick = {()=>this.chooseStock("RDFN")}>RDFN</Dropdown.Item>
+      <Dropdown.Item as="button" onClick = {()=>this.chooseStock("BYND")}>BYND</Dropdown.Item>
+      <Dropdown.Item as="button" onClick = {()=>this.chooseStock("ETSY")}>ETSY</Dropdown.Item>
+      <Dropdown.Item as="button" onClick = {()=>this.chooseStock("TDOC")}>TDOC</Dropdown.Item>
+      <Dropdown.Item as="button" onClick = {()=>this.chooseStock("ZG")}>ZG</Dropdown.Item>
+      <Dropdown.Item as="button" onClick = {()=>this.chooseStock("ZM")}>ZM</Dropdown.Item>
+      <Dropdown.Item as="button" onClick = {()=>this.chooseStock("PINS")}>PINS</Dropdown.Item>
+      <Dropdown.Item as="button" onClick = {()=>this.chooseStock("ROKU")}>ROKU</Dropdown.Item>
+      <Dropdown.Item as="button" onClick = {()=>this.chooseStock("MELI")}>MELI</Dropdown.Item>
+      <Dropdown.Item as="button" onClick = {()=>this.chooseStock("ISRG")}>ISRG</Dropdown.Item>
+      <Dropdown.Item as="button" onClick = {()=>this.chooseStock("AMZN")}>AMZN</Dropdown.Item>
+      <Dropdown.Item as="button" onClick = {()=>this.chooseStock("ARKG")}>ARKG</Dropdown.Item>
+      <Dropdown.Item as="button" onClick = {()=>this.chooseStock("SPCE")}>SPCE</Dropdown.Item>
+      <Dropdown.Item as="button" onClick = {()=>this.chooseStock("CLOV")}>CLOV</Dropdown.Item>
+      <Dropdown.Item as="button" onClick = {()=>this.chooseStock("IPOE")}>IPOE</Dropdown.Item>
+      <Dropdown.Item as="button" onClick = {()=>this.chooseStock("MSFT")}>MSFT</Dropdown.Item>
+      <Dropdown.Item as="button" onClick = {()=>this.chooseStock("GOOG")}>GOOG</Dropdown.Item>
+      <Dropdown.Item as="button" onClick = {()=>this.chooseStock("FB")}>FB</Dropdown.Item>
+      <Dropdown.Item as="button" onClick = {()=>this.chooseStock("TSLA")}>TSLA</Dropdown.Item>
+      <Dropdown.Item as="button" onClick = {()=>this.chooseStock("TSM")}>TSM</Dropdown.Item>
+      <Dropdown.Item as="button" onClick = {()=>this.chooseStock("JPM")}>JPM</Dropdown.Item>
+      <Dropdown.Item as="button" onClick = {()=>this.chooseStock("WMT")}>WMT</Dropdown.Item>
+      <Dropdown.Item as="button" onClick = {()=>this.chooseStock("PYPL")}>PYPL</Dropdown.Item>
       
       </DropdownButton>
 
@@ -155,10 +174,6 @@ class App extends Component{
           <br></br>
           <br></br>
           <br></br>
-
-          
-
-  
        
     <Stock data = {this.state.data}/>
     <button onClick = {this.fetchData}>click to fetch data</button>
@@ -171,20 +186,6 @@ class App extends Component{
     
   }
 }
-
-    
-  
-  
-
-
-
-
-    
-
-    
-  
-  
-
 
 
 export default App;
