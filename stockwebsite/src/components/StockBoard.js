@@ -186,6 +186,7 @@ class StockBoard extends Component {
             {allPosts}
             </div>
             </div>
+           
         );
 }
     }
