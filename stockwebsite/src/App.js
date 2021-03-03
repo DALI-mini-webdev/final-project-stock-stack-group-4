@@ -26,20 +26,14 @@ class App extends Component{
     
   }
 
-
-
   handleClick = (event) => {
     this.setState ={isLoggedIn: true} 
     console.log("button clicked")
-
   }
-
 
   chooseStock = (stockName) =>{
     console.log(stockName)
-    this.setState({stock: stockName})
-   
-    
+    this.setState({stock: stockName})    
   }
 
   handleClick = (event) => {
@@ -61,16 +55,12 @@ class App extends Component{
     console.log(this.state.stock)
     this.setState({ButtonDisplay: stockName})
   }
-
-
   
   onChangeFunction = (event) => {
     this.setState({username: event.target.value})
   }
 
-  render() {
-
-    
+  render() {   
     console.log(this.state.isLoggedIn)
 
     if(this.state.isLoggedIn === true) {
@@ -88,9 +78,7 @@ class App extends Component{
           <h1 className="Welcome">{ sayHello }</h1>
           <button className="Submit-button" onClick={this.handleClickOpposite}> Logout </button>
 
-
-          <br></br>
-      
+<br></br>
 
       <DropdownButton id="dropdown-item-button" title={this.state.ButtonDisplay}>
       <Dropdown.Item as="button" onClick = {()=>this.chooseStock("AAPL")}>AAPL</Dropdown.Item>
@@ -124,9 +112,11 @@ class App extends Component{
       
       </DropdownButton>
 
+          <StockBoard username={this.state.username} stock={this.state.stock}></StockBoard>
+
+
         <br></br>
         
-        <StockBoard username={this.state.username} stock={this.state.stock}></StockBoard>
           
   
           <br></br>
@@ -167,4 +157,3 @@ class App extends Component{
   }
 
 export default App;
-

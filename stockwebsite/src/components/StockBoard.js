@@ -154,14 +154,14 @@ class StockBoard extends Component {
     }
 
     if(this.state.ShowingStocks === true) {
-
+      
 
       console.log(this.props.stock);
       console.log("username: " +this.props.username);
         const posts = this.state.allStocks;
         const allPosts = posts.map((stock) => {
-          
-            return (
+         
+      return (
               <Stock classname="stockComponent"
                 open= {stock.open}
                 close= {stock.close}
@@ -169,26 +169,28 @@ class StockBoard extends Component {
                 delete={this.deleteStockInfo}
                 name = {stock.name}
               />
-            );
-          }
+              );
+            }
         );
-      return (
+            
+      return(
         <div>
-          <p className="center"> Your Stock Board </p>
-          <center>
-          <button className="Stock-buttons" onClick={() => this.saveStock(this.props.username, this.props.stock)}> Add Stock to Portfolio</button>
-          <br></br>
-          <button className="center" onClick={() => this.fetchStocks(this.props.username)}>Refresh</button>
-          <br></br>
-          </center>
-          <div className="allPosts">
-          {allPosts}
-          </div>
-        
-        </div>
-      );
+            <p className="center"> Your Stock Board </p>
+            <center>
+            <button className="Stock-buttons" onClick={() => this.saveStock(this.props.username, this.props.stock)}> Add Stock to Portfolio</button>
+            <br></br>
+            <button className="center" onClick={() => this.fetchStocks(this.props.username)}>Refresh</button>
+            <br></br>
+            </center>
+            <div className="allPosts">
+            {allPosts}
+            </div>
+            </div>
+        );
+}
     }
   }
-}
+
+
 
 export default StockBoard;

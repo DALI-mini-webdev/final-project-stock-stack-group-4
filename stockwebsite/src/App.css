@@ -1,10 +1,10 @@
 .App {
   text-align: center;
-  font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif
+  font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
 }
 
-
 .App-header {
+  padding-top: 100px;
   background-color: #474343;
   min-height: 10vh;
   display: flex;
@@ -17,7 +17,7 @@
   height: 100vh;
   min-width: 500px;
   min-height: 500px;
-  font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif
+  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
 }
 
 .App-body {
@@ -53,13 +53,15 @@
 .Submit-button {
   background-color:rgb(7, 56, 88);
   color: white;
-  padding: 10px;
+  padding: 6px;
+  font-size: 20px;
 }
 
 .Stock-buttons {
   margin-left: center;
   margin-right: center;
   border-radius: 12px;
+  background-color:#636081;
   background-color:#6f7374e5;
   color: rgb(7, 56, 88);
   margin-bottom: 10px;
