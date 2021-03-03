@@ -16,9 +16,9 @@ class App extends Component{
       isLoggedIn: false,
       data: []
     }
-    this.handleClick = this.handleClick.bind(this);
   }
 
+  // stockData = this.state.data
 
   fetchData = () =>{
     
@@ -60,40 +60,47 @@ class App extends Component{
     }
   }
 
+  handleClick = (event) => {
+    this.setState({ isLoggedIn: true})
+    console.log("button clicked")
+    
+  }
+
+  onChangeFunction = (event) => {
+    this.setState({username: event.target.value})
+  }
 
   chooseStock = (stockName) =>{
     stockName.fetchData();
     stockName.renderData();
   }
 
-   handleClick(event) {
-    this.setState ={ isLoggedIn: true} 
-    console.log("button clicked")
-    
+
+  chooseStock = (stockName) =>{
+    //when I choose a certain stock from the dropdown menu, save its name as a variable
+    //call Meria's method on stockName
+    stockName.fetchData();
+    stockName.renderData();
   }
 
+
   render() {
-
-    const onChangeFunction = (event) => {
-      console.log(event.target.value);
-      document.addEventListener("keyup", function(event) {
-        if (event.code === 'Enter') {
-          var username = event.target.value
-          this.setState = ({ isLoggedIn: true });
-          console.log(this.state.isLoggedIn);
-        }
-      return username
-      });
-
-    }
 
     if(this.state.isLoggedIn === true) {
       console.log(this.state.isLoggedIn);
       console.log("true option");
-      // var sayHello = 'welcome' + username
+      var sayHello = 'welcome, ' + this.state.username
       return (
         <div className = "App-header">
-  
+          
+          
+          <p className="Title">A Bear of a Project</p>
+          <p className="Title-line">______________</p>
+
+          <h1 className="Welcome">{ sayHello }</h1>
+
+          <br></br>
+          <br></br>
 
       <DropdownButton id="dropdown-item-button" title="Add a Stock">
       <Dropdown.Item as="button" onClick = {()=>this.chooseStock("AAPL")}>AAPL</Dropdown.Item>
@@ -127,10 +134,12 @@ class App extends Component{
       
       </DropdownButton>
 
-   
-
           <p className="Title">A Bear of a Project</p>
           <p className="Title-line">______________</p>
+
+      <Stock data = {this.state.data}/>
+    <button onClick = {this.fetchData}>click to fetch data</button>
+    {this.renderData()}
           
           <button  onClick = {this.fetchData}>click to fetch data</button>
           {this.renderData()}
@@ -153,28 +162,29 @@ class App extends Component{
         </div>
       )}
 
-      if(this.state.isLoggedIn === false) {
-        console.log(this.state.isLoggedIn);
-        console.log("false option");
-        return(
+    if(this.state.isLoggedIn === false) {
+      console.log(this.state.isLoggedIn);
+      console.log("false option");
+      return(
           <div className = "App-header">
   
           <p className="Title">A Bear of a Project</p>
           <p className="Title-line">______________</p>
   
-  
-          
+
           <p className="Name-enter">Enter Your Username Below:</p>
-          <input type="text" onChange={onChangeFunction}/>
+          <input type="text" onChange={this.onChangeFunction}/>
+
+          <br></br>
+          <button className="Submit-button" onClick={this.handleClick}> Submit </button>
+
           <br></br>
           <br></br>
           <br></br>
           <br></br>
           <br></br>
        
-    <Stock data = {this.state.data}/>
-    <button onClick = {this.fetchData}>click to fetch data</button>
-    {this.renderData()}
+    
    </div>
   
         );
