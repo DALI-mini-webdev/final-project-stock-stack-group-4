@@ -19,11 +19,11 @@ class Stock extends Component{
         const percentChange = (((this.props.close - this.props.open) / this.props.open) * 100).toFixed(3);
         return(
             <div className="stock">
-            <p>Stock: {this.props.name}</p>
+            <p className="stockNameText">Stock: {this.props.name}</p>
             <p className="stockText">The stock's percent change is {percentChange} %</p>
             <p className="stockText">The stock's opening value is {this.props.open}</p>
             <p className="stockText">The stock's closing value is {this.props.close}</p>
-            <button className="deleteStock" onClick={this.deletePosting} >Delete!</button>
+            
             </div>
         )
     }

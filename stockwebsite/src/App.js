@@ -77,6 +77,7 @@ class App extends Component{
 
           <h1 className="Welcome">{ sayHello }</h1>
           <button className="Submit-button" onClick={this.handleClickOpposite}> Logout </button>
+          <p className="yourBoard"> YOUR STOCK BOARD </p>
 
 <br></br>
 
@@ -112,7 +113,7 @@ class App extends Component{
       
       </DropdownButton>
 
-          <StockBoard username={this.state.username} stock={this.state.stock}></StockBoard>
+      <StockBoard username={this.state.username} stock={this.state.stock}></StockBoard>
 
 
         <br></br>
@@ -146,9 +147,18 @@ class App extends Component{
           <br></br>
           <br></br>
           <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          
+          
+
        
     
-   </div>
+         </div>
   
         )
     }
