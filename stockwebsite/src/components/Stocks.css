@@ -1,7 +1,7 @@
 .stock {
   width: 20rem;
   height: 180px;
-  background-color: #636081;
+  background-color: rgb(7, 56, 88);
   margin: 12px;
   display: inline-block;
   text-align: center;
@@ -24,6 +24,39 @@
 .center {
     display: block;
     text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.addStock {
+    background-color:rgb(7, 56, 88);;
+    color: white;
+    padding: 8px;
+    display: block;
+    text-align: center;
+    font-size: 13px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.deleteStock {
+    background-color:rgb(7, 56, 88);;
+    color: white;
+    padding: 8px;
+    display: block;
+    text-align: center;
+    font-size: 13px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.refresh {
+    background-color:rgb(7, 56, 88);;
+    color: white;
+    padding: 8px;
+    display: block;
+    text-align: center;
+    font-size: 13px;
     margin-left: auto;
     margin-right: auto;
 }
