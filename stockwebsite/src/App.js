@@ -67,6 +67,7 @@ class App extends Component{
       console.log(this.state.isLoggedIn);
       console.log("true option");
       var sayHello = 'Welcome, ' + this.state.username + '!'
+
       return (
         <div className = "App-header">
 
@@ -77,9 +78,7 @@ class App extends Component{
           <h1 className="Welcome">{ sayHello }</h1>
           <button className="Submit-button" onClick={this.handleClickOpposite}> Logout </button>
 
-
-          <br></br>
-      
+<br></br>
 
       <DropdownButton id="dropdown-item-button" title={this.state.ButtonDisplay}>
       <Dropdown.Item as="button" onClick = {()=>this.chooseStock("AAPL")}>AAPL</Dropdown.Item>
@@ -113,9 +112,11 @@ class App extends Component{
       
       </DropdownButton>
 
+          <StockBoard username={this.state.username} stock={this.state.stock}></StockBoard>
+
+
         <br></br>
         
-        <StockBoard username={this.state.username} stock={this.state.stock}></StockBoard>
           
   
           <br></br>

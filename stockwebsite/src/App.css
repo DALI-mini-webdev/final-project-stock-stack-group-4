@@ -4,6 +4,7 @@
 }
 
 .App-header {
+  padding-top: 100px;
   background-color: #474343;
   min-height: 10vh;
   display: flex;

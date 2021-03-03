@@ -17,7 +17,7 @@ class StockBoard extends Component {
       close: '',
       id: 0,
       fetched: false,
-      
+      ShowingStocks: false
     }
   }
 
@@ -37,6 +37,8 @@ class StockBoard extends Component {
         console.error("Error removing document: ", error);
     });
    });
+
+
   }
 
   saveStock = async (username, sName) => { 
@@ -63,11 +65,20 @@ class StockBoard extends Component {
             });
             }).catch(error => {
           console.log(error.message)
-          });             
+          });
+              
       })
       .catch((error) => {
         console.log(error);
-      }) 
+      })
+   
+  }
+
+  handleClick = (event) => {
+    this.setState({ ShowingStocks: true})
+    console.log("show my stocks button clicked")
+    console.log(this.state.ShowingStocks)
+    this.fetchStocks(this.props.username)
   }
 
   fetchStocks = (username) => {
@@ -84,16 +95,21 @@ class StockBoard extends Component {
       }).then(() => {
         this.setState({
           allStocks: stockList
-        }        
-        );        
+        }
+        
+        );
+        
       })
       .catch(err => {
         console.log(err.message)
-      })     
+      })
+      
   }
 
   fetchData = (stock) =>{
+
     if (!this.state.fetched){
+
     axios.get("https://www.alphavantage.co/query", {
       params:{ 
          function: "TIME_SERIES_DAILY_ADJUSTED",
@@ -102,13 +118,20 @@ class StockBoard extends Component {
    }})
 
     .then(res => {
+        
+        
 
         //commented out for now because API has exceeded limit and doesn't work
 
         this.setState({data: res.data["Time Series (Daily)"]["2021-03-02"], 
         open: res.data["Time Series (Daily)"]["2021-03-02"]["1. open"], 
-        close: res.data["Time Series (Daily)"]["2021-03-02"]["4. close"], fetched: true}) 
-        console.log("state data: " + this.state.data)     
+        close: res.data["Time Series (Daily)"]["2021-03-02"]["4. close"], fetched: true})
+        
+
+        console.log("state data: " + this.state.data)
+        
+
+
     })
     .catch((error) => {
       console.log(error);
@@ -116,38 +139,58 @@ class StockBoard extends Component {
     }
   }
  
-  render() {     
-    console.log(this.props.stock);
-    console.log("username: " +this.props.username);
-      const posts = this.state.allStocks;
-      const allPosts = posts.map((stock) => {       
-          return (
-            <Stock classname="stockComponent"
-              open= {stock.open}
-              close= {stock.close}
-              id={posts.id}
-              delete={this.deleteStockInfo}
-              name = {stock.name}
-            />
-          );
-        }
-      );
-    return (
-      <div>
-        <p className="center"> Your Stock Board </p>
-        
-        <button className="addStock" onClick={() => this.saveStock(this.props.username, this.props.stock)}> Add Stock to Portfolio</button>
-        <center>
-        <button className="refresh" onClick={() => this.fetchStocks(this.props.username)}>Refresh</button>
+  render() {
+      
+    if(this.state.ShowingStocks === false) {
+      return (
+        <div className = "App-header">
+
+        <button className="center" onClick={this.handleClick}>Show My Stocks</button>
+
         <br></br>
-        </center>
-        <div className="allPosts">
-        {allPosts}
+
         </div>
-       
-      </div>
-    );
-  }
+      )
+    }
+
+    if(this.state.ShowingStocks === true) {
+      
+
+      console.log(this.props.stock);
+      console.log("username: " +this.props.username);
+        const posts = this.state.allStocks;
+        const allPosts = posts.map((stock) => {
+         
+      return (
+              <Stock classname="stockComponent"
+                open= {stock.open}
+                close= {stock.close}
+                id={posts.id}
+                delete={this.deleteStockInfo}
+                name = {stock.name}
+              />
+              );
+            }
+        );
+            
+      return(
+        <div>
+            <p className="center"> Your Stock Board </p>
+            <center>
+            <button className="Stock-buttons" onClick={() => this.saveStock(this.props.username, this.props.stock)}> Add Stock to Portfolio</button>
+            <br></br>
+            <button className="center" onClick={() => this.fetchStocks(this.props.username)}>Refresh</button>
+            <br></br>
+            </center>
+            <div className="allPosts">
+            {allPosts}
+            </div>
+            </div>
+        );
 }
+    }
+  }
+
+
 
 export default StockBoard;
