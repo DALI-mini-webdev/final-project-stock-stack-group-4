@@ -17,6 +17,7 @@
   height: 100vh;
   min-width: 500px;
   min-height: 500px;
+  font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif
 }
 
 .App-body {
@@ -53,4 +54,15 @@
   background-color:#636081;
   color: white;
   padding: 10px;
+}
+
+.Stock-buttons {
+  margin-left: center;
+  margin-right: center;
+  border-radius: 12px;
+  background-color:#88dbf0e5;
+  color: rgb(7, 56, 88);
+  margin-bottom: 10px;
+  justify-content: center;  
+  align-items: center;  
 }

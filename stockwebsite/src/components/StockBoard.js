@@ -3,6 +3,7 @@ import Firebase from '../firestore/index';
 import Stock from './Stock';
 import axios from 'axios';
 import './Stocks.css';
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"></link>
 
 
 class StockBoard extends Component {
@@ -25,13 +26,7 @@ class StockBoard extends Component {
     console.log("deleted")
   }
 
-
-
-
-
   saveStock = async (username, sName) => { 
-
- 
 
       //username and stock Name parameters need to be filled with input from the text box and drop down
    
@@ -43,10 +38,10 @@ class StockBoard extends Component {
      }})
   
       .then(res => {
-  
+            console.log(res.data)
         Firebase.db.collection("/users/"+username+"/stocks").doc(sName).set({
-            open: res.data["Time Series (Daily)"]["2020-12-15"]["1. open"],
-            close: res.data["Time Series (Daily)"]["2020-12-15"]["4. close"],
+            open: res.data["Time Series (Daily)"]["2021-03-02"]["1. open"],
+            close: res.data["Time Series (Daily)"]["2021-03-02"]["4. close"],
             id: this.state.id,
             name: sName
           }).then(ref => {
@@ -56,22 +51,20 @@ class StockBoard extends Component {
             }).catch(error => {
           console.log(error.message)
           });
-            
-        
+              
       })
       .catch((error) => {
         console.log(error);
       })
-
    
   }
 
-
   fetchStocks = (username) => {
     const stockList = [];
+    this.setState({ButtonDisplay: "Add A Stock"})
     
     //'username' parameter needs to be something from the text box
-    Firebase.db.collection('/users/' + username + '/stocks').get()
+    Firebase.db.collection('/users' + username + 'stocks').get()
       .then(querySnapshot => {
         querySnapshot.forEach( doc => {
           console.log(doc.data());
@@ -86,6 +79,7 @@ class StockBoard extends Component {
       .catch(err => {
         console.log(err.message)
       })
+      
   }
 
   fetchData = (stock) =>{
@@ -96,16 +90,22 @@ class StockBoard extends Component {
       params:{ 
          function: "TIME_SERIES_DAILY_ADJUSTED",
          symbol: stock, //the stock we want, passed as a parameter 
-         apikey: "1WKONX2HMTRYF2JO",
+         apikey: "VW5DZAFLJNE2BJMT",
    }})
 
     .then(res => {
+        
+        
 
         //commented out for now because API has exceeded limit and doesn't work
-        this.setState({data: res.data["Time Series (Daily)"]["2020-12-15"], 
-        open: res.data["Time Series (Daily)"]["2020-12-15"]["1. open"], 
-        close: res.data["Time Series (Daily)"]["2020-12-15"]["4. close"], fetched: true})
+
+        this.setState({data: res.data["Time Series (Daily)"]["2021-03-02"], 
+        open: res.data["Time Series (Daily)"]["2021-03-02"]["1. open"], 
+        close: res.data["Time Series (Daily)"]["2021-03-02"]["4. close"], fetched: true})
         
+        console.log("state data: " + this.state.data)
+        
+
 
     })
     .catch((error) => {
@@ -113,8 +113,6 @@ class StockBoard extends Component {
     })
     }
   }
-
-
  
   render() {
       
@@ -122,7 +120,7 @@ class StockBoard extends Component {
     console.log("username: " +this.props.username);
       const posts = this.state.allStocks;
       const allPosts = posts.map((stock) => {
-          this.fetchData(stock);
+          
           return (
             <Stock classname="stockComponent"
               open= {stock.open}
@@ -135,20 +133,19 @@ class StockBoard extends Component {
       );
     return (
       <div>
-        <p className="center"> Stock Board </p>
-        
-
-        <button className="center" onClick={() => this.saveStock(this.props.username, this.props.stock)}> Add Stock to Portfolio</button>
+        <p className="center"> Your Stock Board </p>
+        <center>
+        <button className="Stock-buttons" onClick={() => this.saveStock(this.props.username, this.props.stock)}> Add Stock to Portfolio</button>
         <br></br>
-        <button className="center" onClick={this.deletePosting}>Delete Stock From Portfolio </button>
+        <button className="Stock-buttons" onClick={this.deletePosting}>Delete Stock From Portfolio </button>
         <br></br>
-        <button className="center" onClick={() => this.fetchStocks(this.props.username)}>Refresh</button>
+        <button className="Stock-buttons" onClick={() => this.fetchStocks(this.props.username)}>Refresh</button>
+        <br></br>
+        </center>
         <div className="allPosts">
         {allPosts}
         </div>
        
-
-      
       </div>
     );
   }
