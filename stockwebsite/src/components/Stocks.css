@@ -1,10 +1,16 @@
 .stock {
   width: 20rem;
-  height: 200px;
-  background-color: rgb(95, 88, 182);
-  margin: 10px;
+  height: 180px;
+  background-color: #636081;
+  margin: 12px;
   display: inline-block;
   text-align: center;
+}
+
+.stockText {
+    text-align: center;
+    margin: 8px;
+    font-size: 16px;
 }
 
 .stockComponent{
