@@ -18,10 +18,7 @@ class App extends Component{
     }
   }
 
-
   // stockData = this.state.data
-
-
 
   fetchData = () =>{
     
@@ -105,6 +102,7 @@ class App extends Component{
           <br></br>
           <br></br>
           <br></br>
+          <br></br>
 
       <DropdownButton id="dropdown-item-button" title="Add a Stock">
       <Dropdown.Item as="button" onClick = {()=>this.chooseStock("AAPL")}>AAPL</Dropdown.Item>
@@ -138,12 +136,12 @@ class App extends Component{
       
       </DropdownButton>
 
+          <p className="Title">A Bear of a Project</p>
+          <p className="Title-line">______________</p>
+
       <Stock data = {this.state.data}/>
     <button onClick = {this.fetchData}>click to fetch data</button>
     {this.renderData()}
-
-          
-
           
           {/* <button  onClick = {this.fetchData}>click to fetch data</button>
           {this.renderData()} */}
@@ -175,12 +173,13 @@ class App extends Component{
           <p className="Title">A Bear of a Project</p>
           <p className="Title-line">______________</p>
   
-  
-          
-          <p className="Name-enter">Enter your username below:</p>
+
+          <p className="Name-enter">Enter Your Username Below:</p>
           <input type="text" onChange={this.onChangeFunction}/>
+
           <br></br>
           <button className="Submit-button" onClick={this.handleClick}> Submit </button>
+
           <br></br>
           <br></br>
           <br></br>
@@ -192,10 +191,8 @@ class App extends Component{
   
         );
     }
-    
-    
+  
   }
-}
-
+  }
 
 export default App;
