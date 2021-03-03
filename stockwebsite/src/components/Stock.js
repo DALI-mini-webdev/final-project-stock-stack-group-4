@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import './Stocks.css';
+import DropdownButton from 'react-bootstrap/DropdownButton';
 
 class Stock extends Component{
     constructor(props){
@@ -14,10 +15,10 @@ class Stock extends Component{
     render(){
         return(
             <div className="stock">
-            <p>stock: {this.props.name}</p>
-            <p>the stock's percent change is {this.state.percentChange}</p>
-            <p>the stock's opening value is {this.props.open}</p>
-            <p>the stock's closing value is {this.props.close}</p>
+            <p>Stock: {this.props.name}</p>
+            <p className="stockText">The stock's percent change is {this.state.percentChange}</p>
+            <p className="stockText">The stock's opening value is {this.props.open}</p>
+            <p className="stockText">The stock's closing value is {this.props.close}</p>
             </div>
         )
     }
