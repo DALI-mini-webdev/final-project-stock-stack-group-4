@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import './Stocks.css';
+import DropdownButton from 'react-bootstrap/DropdownButton';
 
 class Stock extends Component{
     constructor(props){
