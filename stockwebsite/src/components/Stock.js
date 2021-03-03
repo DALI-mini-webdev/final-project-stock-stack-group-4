@@ -4,7 +4,7 @@ import './Stocks.css';
 class Stock extends Component{
     constructor(props){
         super(props);
-        this.state = {percentChange: ''};
+        this.state = {percentChange: (100*(this.props.close - this.props.open)/(this.props.open)) };
     }
 
     changeState = () =>{
