@@ -15,6 +15,7 @@ class App extends Component{
     this.state = {
       isLoggedIn: true,
       username: '',
+      stock: '',
       data: [], 
     }
     this.handleClick = this.handleClick.bind(this);
@@ -22,57 +23,26 @@ class App extends Component{
   }
 
 
-  fetchData = () =>{
-    
-    axios.get("https://www.alphavantage.co/query", {
-      params:{ 
-         function: "TIME_SERIES_DAILY_ADJUSTED",
-         symbol: "IBM", //this can be changed depending on which stock we want
-         //^^^^ this can be a variable, and be based on what we choose from the dropdown menu
-         apikey: "1WKONX2HMTRYF2JO",
-   }})
-
-    .then(res => {
-      
-      this.setState({data: res.data["Time Series (Daily)"]})
-      this.setState({data: this.state.data["2020-09-30"]})
-      //date can be changed later 
-     
-     
-    })
-    .catch((error) => {
-      console.log(error);
-    })
-  }
-
-  renderData = () => {
-    if (this.state.data){
-      console.log("inside if")
-      console.log(this.state.data)
-     
-      return(
-        <div>
-          
-          Open: {this.state.data["1. open"]}
-        </div>
-      )
-    } else{
-      console.log("no data")
-      return null
-    }
-  }
 
   handleClick = (event) => {
     this.setState ={isLoggedIn: true} 
     console.log("button clicked")
-  
 
   }
 
-  
+  chooseStock = (stockName) =>{
+    console.log(stockName)
+    this.setState({stock: stockName})
+    this.setState({username: 'Cindy'})
+    
+  }
 
-  onChangeFunction = (event) => {
-    this.setState({username: event.target.value})
+
+  
+  onChangeFunction = () => {
+    //this.setState({username: event.target.value})
+    this.setState({username: 'Emma'})
+    console.log("state username: " + this.state.username)
 
   }
 
@@ -95,21 +65,17 @@ class App extends Component{
           {/* <h1>{ sayHello }</h1> */}
 
           
-          <button onClick = {this.fetchData}>click to fetch data</button>
-          {this.renderData()}
   
-
           <p className="App-body">Add a Stock:</p>
           <Stock />
-          <DropdownButton class="Button-style" id="dropdown-item-button" title="Add a Stock">
-          <Dropdown.Item as="button">AAPL</Dropdown.Item>
-          <Dropdown.Item as="button">NFLX</Dropdown.Item>
-          <Dropdown.Item as="button">PNRA</Dropdown.Item>
+          <DropdownButton class="Button-style" id="dropdown-item-button" title="Add a Stock"  >
+          <Dropdown.Item as="button" onSelect={()=>this.chooseStock('AAPL')}>AAPL</Dropdown.Item>
+          <Dropdown.Item as="button" onSelect={()=>this.chooseStock('NFLX')}>NFLX</Dropdown.Item>
+          <Dropdown.Item as="button" onSelect={()=>this.chooseStock('PNRA')}>PNRA</Dropdown.Item>
           </DropdownButton>
-
         
-
-          <StockBoard username={this.state.username}></StockBoard>
+          <StockBoard username={this.state.username} stock={this.state.stock}></StockBoard>
+          
   
           <br></br>
           <p></p>

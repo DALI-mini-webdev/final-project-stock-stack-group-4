@@ -16,7 +16,7 @@ class StockBoard extends Component {
       close: '',
       id: 0,
       fetched: false,
-      username: '',
+      
     }
   }
 
@@ -40,7 +40,7 @@ class StockBoard extends Component {
   
       .then(res => {
   
-        Firebase.db.collection("/users"+username+"stocks").doc(sName).set({
+        Firebase.db.collection("/users/"+username+"/stocks").doc(sName).set({
             open: res.data["Time Series (Daily)"]["2020-12-15"]["1. open"],
             close: res.data["Time Series (Daily)"]["2020-12-15"]["4. close"],
             id: this.state.id,
@@ -67,7 +67,7 @@ class StockBoard extends Component {
     const stockList = [];
     
     //'username' parameter needs to be something from the text box
-    Firebase.db.collection('/users' + username + 'stocks').get()
+    Firebase.db.collection('/users/' + username + '/stocks').get()
       .then(querySnapshot => {
         querySnapshot.forEach( doc => {
           console.log(doc.data());
@@ -103,7 +103,7 @@ class StockBoard extends Component {
         this.setState({data: res.data["Time Series (Daily)"]["2020-12-15"], 
         open: res.data["Time Series (Daily)"]["2020-12-15"]["1. open"], 
         close: res.data["Time Series (Daily)"]["2020-12-15"]["4. close"], fetched: true})
-        console.log(this.state.data)
+        
 
     })
     .catch((error) => {
@@ -116,6 +116,8 @@ class StockBoard extends Component {
  
   render() {
       
+    console.log(this.props.stock);
+    console.log("username: " +this.props.username);
       const posts = this.state.allStocks;
       const allPosts = posts.map((stock) => {
           this.fetchData(stock);
@@ -133,15 +135,12 @@ class StockBoard extends Component {
       <div>
         <p className="center"> Stock Board </p>
         
-        {/* right now, the user and stock passed to the "saveStock" function is hard-coded - needs
-        to be changed to the input from the text box and drop down  */}
-        <button className="center" onClick={this.saveStock(this.state.username, 'ACLS')}> add stock to portfolio</button>
+        
+        <button className="center" onClick={() => this.saveStock(this.props.username, this.props.stock)}> add stock to portfolio</button>
         <button className="center" onClick={this.deletePosting}>Delete stock from portfolio </button>
        
-        {/*also needs to be changed to the username from the text box instead of hard coded*/ }
-       
-       
-        {this.fetchStocks(this.props.username)}
+        
+        <button className="center" onClick={() => this.fetchStocks(this.props.username)}>Refresh</button>
         <div className="allPosts">
         {allPosts}
         </div>
