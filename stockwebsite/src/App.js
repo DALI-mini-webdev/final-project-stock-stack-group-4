@@ -14,50 +14,29 @@ class App extends Component{
     super(props);
     this.state = {
       isLoggedIn: false,
-      data: []
+      username: '',
+      stock: '',
+      data: [], 
     }
-  }
 
-  // stockData = this.state.data
-
-  fetchData = () =>{
+    this.handleClick = this.handleClick.bind(this);
     
-    axios.get("https://www.alphavantage.co/query", {
-      params:{ 
-         function: "TIME_SERIES_DAILY_ADJUSTED",
-         symbol: "IBM", //this can be changed depending on which stock we want
-         //^^^^ this can be a variable, and be based on what we choose from the dropdown menu
-         apikey: "1WKONX2HMTRYF2JO",
-   }})
-
-    .then(res => {
-      
-      this.setState({data: res.data["Time Series (Daily)"]})
-      this.setState({data: this.state.data["2020-09-30"]})
-      //date can be changed later 
-     
-     
-    })
-    .catch((error) => {
-      console.log(error);
-    })
   }
 
-  renderData = () => {
-    if (this.state.data){
-      console.log("inside if")
-      console.log(this.state.data)
-     
-      return(
-        <div>
-          
-          Open: {this.state.data["1. open"]}
-        </div>
-      )
-    } else{
-      console.log("no data")
-      return null
-    }
+
+
+  handleClick = (event) => {
+    this.setState ={isLoggedIn: true} 
+    console.log("button clicked")
+
+  }
+
+
+  chooseStock = (stockName) =>{
+    console.log(stockName)
+    this.setState({stock: stockName})
+   
+    
   }
 
   handleClick = (event) => {
@@ -71,20 +50,19 @@ class App extends Component{
   }
 
   chooseStock = (stockName) =>{
-    stockName.fetchData();
-    stockName.renderData();
+    this.setState({stock: stockName})
   }
 
 
-  chooseStock = (stockName) =>{
-    //when I choose a certain stock from the dropdown menu, save its name as a variable
-    //call Meria's method on stockName
-    stockName.fetchData();
-    stockName.renderData();
+  
+  onChangeFunction = (event) => {
+    this.setState({username: event.target.value})
   }
-
 
   render() {
+
+    
+    console.log(this.state.isLoggedIn)
 
     if(this.state.isLoggedIn === true) {
       console.log(this.state.isLoggedIn);
@@ -134,27 +112,8 @@ class App extends Component{
       
       </DropdownButton>
 
-          <p className="Title">A Bear of a Project</p>
-          <p className="Title-line">______________</p>
-
-      <Stock data = {this.state.data}/>
-    <button onClick = {this.fetchData}>click to fetch data</button>
-    {this.renderData()}
+        <StockBoard username={this.state.username} stock={this.state.stock}></StockBoard>
           
-          <button  onClick = {this.fetchData}>click to fetch data</button>
-          {this.renderData()}
-  
-
-
-          <p className="App-body">Add a Stock:</p>
-          <Stock />
-          <DropdownButton class="Button-style" id="dropdown-item-button" title="Add a Stock">
-          <Dropdown.Item as="button">AAPL</Dropdown.Item>
-          <Dropdown.Item as="button">NFLX</Dropdown.Item>
-          <Dropdown.Item as="button">PNRA</Dropdown.Item>
-          </DropdownButton>
-
-          <StockBoard></StockBoard>
   
           <br></br>
           <p></p>
@@ -187,7 +146,7 @@ class App extends Component{
     
    </div>
   
-        );
+        )
     }
   
   }
