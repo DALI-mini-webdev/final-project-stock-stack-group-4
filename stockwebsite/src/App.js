@@ -53,6 +53,7 @@ class App extends Component{
 
   chooseStock = (stockName) =>{
     this.setState({stock: stockName})
+    console.log(this.state.stock)
   }
 
 

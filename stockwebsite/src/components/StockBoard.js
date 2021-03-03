@@ -38,10 +38,10 @@ class StockBoard extends Component {
      }})
   
       .then(res => {
-  
+            console.log(res.data)
         Firebase.db.collection("/users/"+username+"/stocks").doc(sName).set({
-            open: res.data["Time Series (Daily)"]["2020-12-15"]["1. open"],
-            close: res.data["Time Series (Daily)"]["2020-12-15"]["4. close"],
+            open: res.data["Time Series (Daily)"]["2021-03-02"]["1. open"],
+            close: res.data["Time Series (Daily)"]["2021-03-02"]["4. close"],
             id: this.state.id,
             name: sName
           }).then(ref => {
@@ -88,15 +88,22 @@ class StockBoard extends Component {
       params:{ 
          function: "TIME_SERIES_DAILY_ADJUSTED",
          symbol: stock, //the stock we want, passed as a parameter 
-         apikey: "1WKONX2HMTRYF2JO",
+         apikey: "VW5DZAFLJNE2BJMT",
    }})
 
     .then(res => {
+        
+        
 
         //commented out for now because API has exceeded limit and doesn't work
-        this.setState({data: res.data["Time Series (Daily)"]["2020-12-15"], 
-        open: res.data["Time Series (Daily)"]["2020-12-15"]["1. open"], 
-        close: res.data["Time Series (Daily)"]["2020-12-15"]["4. close"], fetched: true})      
+
+        this.setState({data: res.data["Time Series (Daily)"]["2021-03-02"], 
+        open: res.data["Time Series (Daily)"]["2021-03-02"]["1. open"], 
+        close: res.data["Time Series (Daily)"]["2021-03-02"]["4. close"], fetched: true})
+        
+        console.log("state data: " + this.state.data)
+        
+
 
     })
     .catch((error) => {
@@ -111,7 +118,7 @@ class StockBoard extends Component {
     console.log("username: " +this.props.username);
       const posts = this.state.allStocks;
       const allPosts = posts.map((stock) => {
-          this.fetchData(stock);
+          
           return (
             <Stock classname="stockComponent"
               open= {stock.open}
