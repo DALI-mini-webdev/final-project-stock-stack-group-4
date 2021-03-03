@@ -8,7 +8,7 @@ class Stock extends Component{
     }
 
     changeState = () =>{
-        this.setState({percentChange: this.state.data});
+        this.setState({percentChange: this.props.data});
     }
 
     render(){

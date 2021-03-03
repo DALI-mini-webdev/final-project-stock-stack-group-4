@@ -20,6 +20,10 @@ class App extends Component{
   }
 
 
+  stockData = this.state.data
+
+
+
   fetchData = () =>{
     
     axios.get("https://www.alphavantage.co/query", {
@@ -60,10 +64,18 @@ class App extends Component{
     }
   }
 
-  handleClick(event) {
+
+  chooseStock = (stockName) =>{
+    //when I choose a certain stock from the dropdown menu, save its name as a variable
+    //call Meria's method on stockName
+    stockName.fetchData();
+    stockName.renderData();
+  }
+
+   handleClick(event) {
     this.setState ={ isLoggedIn: true} 
     console.log("button clicked")
-
+    
   }
 
   render() {
@@ -88,6 +100,16 @@ class App extends Component{
       return (
         <div className = "App-header">
   
+
+      <DropdownButton id="dropdown-item-button" title="Add a Stock">
+      <Dropdown.Item as="button" onClick = {()=>this.chooseStock("AAPL")}>AAPL</Dropdown.Item>
+      <Dropdown.Item as="button" onClick = {()=>this.chooseStock("NFLX")}>NFLX</Dropdown.Item>
+      <Dropdown.Item as="button" onClick = {()=>this.chooseStock("PNRA")}>PNRA</Dropdown.Item>
+      
+      </DropdownButton>
+
+   
+
           <p className="Title">A Bear of a Project</p>
           <p className="Title-line">______________</p>
 
@@ -97,6 +119,7 @@ class App extends Component{
           <button  onClick = {this.fetchData}>click to fetch data</button>
           {this.renderData()}
   
+
 
           <p className="App-body">Add a Stock:</p>
           <Stock />
@@ -133,13 +156,34 @@ class App extends Component{
           <br></br>
           <br></br>
 
-          </div>
+          
+
   
-        )
+       
+    <Stock data = {this.state.data}/>
+    <button onClick = {this.fetchData}>click to fetch data</button>
+    {this.renderData()}
+   </div>
+  
+        );
     }
     
-    }
+    
   }
+}
+
+    
+  
+  
+
+
+
+
+    
+
+    
+  
+  
 
 
 
