@@ -46,3 +46,9 @@
 .Welcome {
   margin-top: 0
 }
+
+.Submit-button {
+  background-color:#5d4fe4;
+  color: white;
+  padding: 10px;
+}
