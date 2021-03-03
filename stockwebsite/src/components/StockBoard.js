@@ -175,7 +175,7 @@ class StockBoard extends Component {
             
       return(
         <div>
-            <p className="center"> Your Stock Board </p>
+            
             <center>
             <button className="Stock-buttons" onClick={() => this.saveStock(this.props.username, this.props.stock)}> Add Stock to Portfolio</button>
             <br></br>

@@ -1,3 +1,4 @@
+
 .stock {
   width: 20rem;
   height: 180px;
@@ -11,7 +12,9 @@
     text-align: center;
     margin: 8px;
     font-size: 16px;
+    color: white;
 }
+
 
 .stockComponent{
     text-align: center;
@@ -26,6 +29,8 @@
     text-align: center;
     margin-left: auto;
     margin-right: auto;
+    margin-top: 20px;
+    margin-bottom: 20px;
 }
 
 .addStock {
@@ -59,4 +64,8 @@
     font-size: 13px;
     margin-left: auto;
     margin-right: auto;
+}
+
+.stockNameText{
+    color: white;
 }

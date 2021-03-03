@@ -1,20 +1,18 @@
+
 .App {
   text-align: center;
   font-family:Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
 }
 
 .App-header {
-  padding-top: 100px;
-  background-color: #474343;
+  padding-top: 50px;
+  background-color: #5a5151;
   min-height: 10vh;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
-  width: 100vw;
-  height: 100vh;
   min-width: 500px;
   min-height: 500px;
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif
@@ -33,7 +31,7 @@
 
 .Title {
   font-size: 50px;
-  margin-top: 50px;
+  margin-top: 30px;
   color: rgb(13, 44, 63);
 }
 
@@ -43,11 +41,20 @@
   color: rgb(13, 44, 63);
   margin-bottom: 100px;
   color: rgb(13, 44, 63);
-  margin-bottom: 60px;
+  margin-bottom: 50px;
 }
 
 .Welcome {
+  
   margin-top: 0
+  
+}
+
+.yourBoard{
+  text-align: center;
+  font-size: 30px;
+  color: white;
+  margin-top: 30px;
 }
 
 .Submit-button {
@@ -55,16 +62,13 @@
   color: white;
   padding: 6px;
   font-size: 20px;
+  margin-top: 20px;
 }
 
 .Stock-buttons {
-  margin-left: center;
-  margin-right: center;
-  border-radius: 12px;
-  background-color:#636081;
-  background-color:#6f7374e5;
-  color: rgb(7, 56, 88);
-  margin-bottom: 10px;
-  justify-content: center;  
-  align-items: center;  
+  background-color:rgb(7, 56, 88);
+  color: white;
+  padding: 6px;
+  font-size: 20px;
+  margin-top: 20px;
 }
