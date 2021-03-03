@@ -3,7 +3,7 @@ import Firebase from '../firestore/index';
 import Stock from './Stock';
 import axios from 'axios';
 import './Stocks.css';
-import DropdownButton from 'react-bootstrap/DropdownButton';
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"></link>
 
 
 class StockBoard extends Component {
@@ -139,8 +139,8 @@ class StockBoard extends Component {
         <p className="center"> Stock Board </p>
         
 
-        <button className="center" onClick={() => this.saveStock(this.props.username, this.props.stock)}> add stock to portfolio</button>
-        <button className="center" onClick={this.deletePosting}>Delete stock from portfolio </button>
+        <button className="center" onClick={() => this.saveStock(this.props.username, this.props.stock)}> Add Stock to Portfolio</button>
+        <button className="center" onClick={this.deletePosting}>Delete Stock From Portfolio </button>
 
         <button className="center" onClick={() => this.fetchStocks(this.props.username)}>Refresh</button>
         <div className="allPosts">
@@ -155,5 +155,3 @@ class StockBoard extends Component {
 }
 
 export default StockBoard;
-
-

@@ -8,6 +8,7 @@ import {Component} from 'react';
 import StockBoard from './components/StockBoard';
 import Stock from './components/Stock';
 import React from 'react';
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous"></link>
 
 
 class App extends Component{
@@ -68,7 +69,7 @@ class App extends Component{
     if(this.state.isLoggedIn === true) {
       console.log(this.state.isLoggedIn);
       console.log("true option");
-      var sayHello = 'welcome, ' + this.state.username 
+      var sayHello = 'Welcome, ' + this.state.username + '!'
       return (
         <div className = "App-header">
           
@@ -78,7 +79,6 @@ class App extends Component{
 
           <h1 className="Welcome">{ sayHello }</h1>
 
-          <br></br>
           <br></br>
 
       <DropdownButton id="dropdown-item-button" title="Add a Stock">
@@ -113,6 +113,8 @@ class App extends Component{
       
       </DropdownButton>
 
+        <br></br>
+        
         <StockBoard username={this.state.username} stock={this.state.stock}></StockBoard>
           
   
