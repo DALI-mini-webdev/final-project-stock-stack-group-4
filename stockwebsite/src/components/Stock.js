@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import './Stocks.css';
 
 class Stock extends Component{
     constructor(props){
@@ -12,9 +13,11 @@ class Stock extends Component{
 
     render(){
         return(
-            <div>
-            <p>will return stock's percent increase or decrease</p>
+            <div className="stock">
+            <p>stock: {this.props.name}</p>
             <p>the stock's percent change is {this.state.percentChange}</p>
+            <p>the stock's opening value is {this.props.open}</p>
+            <p>the stock's closing value is {this.props.close}</p>
             </div>
         )
     }

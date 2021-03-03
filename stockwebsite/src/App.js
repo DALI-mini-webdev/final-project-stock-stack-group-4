@@ -4,18 +4,25 @@ import DropdownButton from 'react-bootstrap/DropdownButton';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import axios from 'axios';
 import {Component} from 'react';
-import Stock from './DataDisplay/Stock';
+import StockBoard from './components/StockBoard';
+import Stock from './components/Stock';
 import React from 'react';
+
 
 class App extends Component{
   constructor(props){
     super(props);
     this.state = {
+      isLoggedIn: false,
       data: []
     }
+    this.handleClick = this.handleClick.bind(this);
   }
 
+
   stockData = this.state.data
+
+
 
   fetchData = () =>{
     
@@ -57,6 +64,7 @@ class App extends Component{
     }
   }
 
+
   chooseStock = (stockName) =>{
     //when I choose a certain stock from the dropdown menu, save its name as a variable
     //call Meria's method on stockName
@@ -64,40 +72,119 @@ class App extends Component{
     stockName.renderData();
   }
 
+   handleClick(event) {
+    this.setState ={ isLoggedIn: true} 
+    console.log("button clicked")
+    
+  }
+
   render() {
-    return (
-     
-      <div className = "App-header">
-       
-        <Stock data = {this.state.data}/>
-        <button onClick = {this.fetchData}>click to fetch data</button>
-        {this.renderData()}
-      
 
-      <p className="App-body">Add a Stock:</p>
+    const onChangeFunction = (event) => {
+      console.log(event.target.value);
+      document.addEventListener("keyup", function(event) {
+        if (event.code === 'Enter') {
+          var username = event.target.value
+          this.setState = ({ isLoggedIn: true });
+          console.log(this.state.isLoggedIn);
+        }
+      return username
+      });
 
-      
-      
+    }
+
+    if(this.state.isLoggedIn === true) {
+      console.log(this.state.isLoggedIn);
+      console.log("true option");
+      // var sayHello = 'welcome' + username
+      return (
+        <div className = "App-header">
   
+
       <DropdownButton id="dropdown-item-button" title="Add a Stock">
       <Dropdown.Item as="button" onClick = {()=>this.chooseStock("AAPL")}>AAPL</Dropdown.Item>
       <Dropdown.Item as="button" onClick = {()=>this.chooseStock("NFLX")}>NFLX</Dropdown.Item>
       <Dropdown.Item as="button" onClick = {()=>this.chooseStock("PNRA")}>PNRA</Dropdown.Item>
+      
       </DropdownButton>
 
    
 
-        <p>A Bear of a Project</p>
-    
-        <p className="App-body">Username:</p>
+          <p className="Title">A Bear of a Project</p>
+          <p className="Title-line">______________</p>
 
-        <p className="App-body">Add a Stock:</p>
-      </div>
+          {/* <h1>{ sayHello }</h1> */}
+
+          
+          <button  onClick = {this.fetchData}>click to fetch data</button>
+          {this.renderData()}
   
-    )
-      
+
+
+          <p className="App-body">Add a Stock:</p>
+          <Stock />
+          <DropdownButton class="Button-style" id="dropdown-item-button" title="Add a Stock">
+          <Dropdown.Item as="button">AAPL</Dropdown.Item>
+          <Dropdown.Item as="button">NFLX</Dropdown.Item>
+          <Dropdown.Item as="button">PNRA</Dropdown.Item>
+          </DropdownButton>
+
+          <StockBoard></StockBoard>
+  
+          <br></br>
+          <p></p>
+  
+        </div>
+      )}
+
+      if(this.state.isLoggedIn === false) {
+        console.log(this.state.isLoggedIn);
+        console.log("false option");
+        return(
+          <div className = "App-header">
+  
+          <p className="Title">A Bear of a Project</p>
+          <p className="Title-line">______________</p>
+  
+  
+          
+          <p className="Name-enter">Enter your username below:</p>
+          <input type="text" onChange={onChangeFunction}/>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+          <br></br>
+
+          
+
+  
+       
+    <Stock data = {this.state.data}/>
+    <button onClick = {this.fetchData}>click to fetch data</button>
+    {this.renderData()}
+   </div>
+  
+        );
+    }
     
-    }}
+    
+  }
+}
+
+    
+  
+  
+
+
+
+
+    
+
+    
+  
+  
+
 
 
 export default App;
