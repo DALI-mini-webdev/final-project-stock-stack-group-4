@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  font-family:Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif
 }
 
 
@@ -39,5 +40,15 @@
   font-size: 30px;
   line-height: 10px;
   color: #5d4fe4;
-  margin-bottom: 100px;
+  margin-bottom: 60px;
+}
+
+.Welcome {
+  margin-top: 0
+}
+
+.Submit-button {
+  background-color:#5d4fe4;
+  color: white;
+  padding: 10px;
 }
