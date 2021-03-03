@@ -15,6 +15,8 @@ class StockBoard extends Component {
       open: '',
       close: '',
       id: 0,
+      fetched: false,
+      
     }
   }
 
@@ -23,21 +25,45 @@ class StockBoard extends Component {
     console.log("deleted")
   }
 
-  saveStock = (username, sName) => { 
+
+
+
+
+  saveStock = async (username, sName) => { 
+
+ 
+
       //username and stock Name parameters need to be filled with input from the text box and drop down
    
-    Firebase.db.collection("/users/"+username+"/stocks").doc(sName).set({
-      open: this.state.open,
-      close: this.state.close,
-      id: this.state.id,
-      name: sName
-    }).then(ref => {
-      this.setState({
-        id: this.state.id + 1,
-      });
-      }).catch(error => {
-    console.log(error.message)
-    });
+      axios.get("https://www.alphavantage.co/query", {
+        params:{ 
+           function: "TIME_SERIES_DAILY_ADJUSTED",
+           symbol: sName, //the stock we want, passed as a parameter 
+           apikey: "1WKONX2HMTRYF2JO",
+     }})
+  
+      .then(res => {
+  
+        Firebase.db.collection("/users/"+username+"/stocks").doc(sName).set({
+            open: res.data["Time Series (Daily)"]["2020-12-15"]["1. open"],
+            close: res.data["Time Series (Daily)"]["2020-12-15"]["4. close"],
+            id: this.state.id,
+            name: sName
+          }).then(ref => {
+            this.setState({
+              id: this.state.id + 1,
+            });
+            }).catch(error => {
+          console.log(error.message)
+          });
+            
+        
+      })
+      .catch((error) => {
+        console.log(error);
+      })
+
+   
   }
 
 
@@ -63,6 +89,9 @@ class StockBoard extends Component {
   }
 
   fetchData = (stock) =>{
+
+    if (!this.state.fetched){
+
     axios.get("https://www.alphavantage.co/query", {
       params:{ 
          function: "TIME_SERIES_DAILY_ADJUSTED",
@@ -71,30 +100,26 @@ class StockBoard extends Component {
    }})
 
     .then(res => {
-        //commented out for now because API has exceeded limit and doesn't work
-    //   this.setState({data: res.data["Time Series (Daily)"]})
-    //   console.log(this.state.data)
-    //   this.setState({data: this.state.data["2020-12-15"]}) //can change date later?
-    //   console.log(this.state.data)
 
-    //   this.setState({open: this.state.data["1. open"]});
-    //   console.log(this.state.open)
-    //   this.setState({close: this.state.data["4. close"]});
-    //   console.log(this.state.close)
-    this.setState({open: 134.5});
-    this.setState({close: 135.6}); //madde up numbers for now 
-  
-  
+        //commented out for now because API has exceeded limit and doesn't work
+        this.setState({data: res.data["Time Series (Daily)"]["2020-12-15"], 
+        open: res.data["Time Series (Daily)"]["2020-12-15"]["1. open"], 
+        close: res.data["Time Series (Daily)"]["2020-12-15"]["4. close"], fetched: true})
+        
+
     })
     .catch((error) => {
       console.log(error);
     })
+    }
   }
 
 
  
   render() {
       
+    console.log(this.props.stock);
+    console.log("username: " +this.props.username);
       const posts = this.state.allStocks;
       const allPosts = posts.map((stock) => {
           this.fetchData(stock);
@@ -112,14 +137,11 @@ class StockBoard extends Component {
       <div>
         <p className="center"> Stock Board </p>
         
-        {/* right now, the user and stock passed to the "saveStock" function is hard-coded - needs
-        to be changed to the input from the text box and drop down  */}
-        <button className="center" onClick={this.saveStock('Maria', 'HD')}> Add Stock To Portfolio</button>
-        <button className="center" onClick={this.deletePosting}>Delete Stock From Portfolio </button>
-       
-        {/*also needs to be changed to the username from the text box instead of hard coded*/ }
-        {this.fetchStocks('Maria')}
 
+        <button className="center" onClick={() => this.saveStock(this.props.username, this.props.stock)}> add stock to portfolio</button>
+        <button className="center" onClick={this.deletePosting}>Delete stock from portfolio </button>
+
+        <button className="center" onClick={() => this.fetchStocks(this.props.username)}>Refresh</button>
         <div className="allPosts">
         {allPosts}
         </div>
