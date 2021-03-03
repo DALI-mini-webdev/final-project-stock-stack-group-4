@@ -79,7 +79,7 @@ class StockBoard extends Component {
     this.setState({ButtonDisplay: "Add A Stock"})
     
     //'username' parameter needs to be something from the text box
-    Firebase.db.collection('/users' + username + 'stocks').get()
+    Firebase.db.collection('/users/' + username + '/stocks').get()
       .then(querySnapshot => {
         querySnapshot.forEach( doc => {
           console.log(doc.data());
