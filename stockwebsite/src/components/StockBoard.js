@@ -28,7 +28,11 @@ class StockBoard extends Component {
 
 
 
+
   saveStock = async (username, sName) => { 
+
+ 
+
       //username and stock Name parameters need to be filled with input from the text box and drop down
    
       axios.get("https://www.alphavantage.co/query", {
@@ -84,8 +88,6 @@ class StockBoard extends Component {
       })
   }
 
-
-
   fetchData = (stock) =>{
 
     if (!this.state.fetched){
@@ -135,11 +137,10 @@ class StockBoard extends Component {
       <div>
         <p className="center"> Stock Board </p>
         
-        
+
         <button className="center" onClick={() => this.saveStock(this.props.username, this.props.stock)}> add stock to portfolio</button>
         <button className="center" onClick={this.deletePosting}>Delete stock from portfolio </button>
-       
-        
+
         <button className="center" onClick={() => this.fetchStocks(this.props.username)}>Refresh</button>
         <div className="allPosts">
         {allPosts}
