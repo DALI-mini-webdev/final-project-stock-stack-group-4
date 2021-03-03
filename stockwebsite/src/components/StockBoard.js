@@ -21,9 +21,24 @@ class StockBoard extends Component {
     }
   }
 
-  deletePosting = () => {
-    this.props.delete(this.props.id)
-    console.log("deleted")
+  deleteStockInfo = async (id, name) => {
+    axios.get("https://www.alphavantage.co/query", {
+        params:{ 
+           function: "TIME_SERIES_DAILY_ADJUSTED",
+           symbol: name, //the stock we want, passed as a parameter 
+           apikey: "1WKONX2HMTRYF2JO",
+     }})
+  
+      .then(res => {
+    //needs to be deleted out of firebase
+    Firebase.db.collection("/users/"+this.state.username+"/stocks").doc("1").delete().then(() => {
+        console.log("successfully deleted!");
+    }).catch((error) => {
+        console.error("Error removing document: ", error);
+    });
+   });
+
+
   }
 
   saveStock = async (username, sName) => { 
@@ -61,9 +76,10 @@ class StockBoard extends Component {
 
   fetchStocks = (username) => {
     const stockList = [];
+    this.setState({ButtonDisplay: "Add A Stock"})
     
     //'username' parameter needs to be something from the text box
-    Firebase.db.collection('/users/' + username + '/stocks').get()
+    Firebase.db.collection('/users' + username + 'stocks').get()
       .then(querySnapshot => {
         querySnapshot.forEach( doc => {
           console.log(doc.data());
@@ -72,12 +88,15 @@ class StockBoard extends Component {
       }).then(() => {
         this.setState({
           allStocks: stockList
-        });
+        }
+        
+        );
         
       })
       .catch(err => {
         console.log(err.message)
       })
+      
   }
 
   fetchData = (stock) =>{
@@ -92,19 +111,15 @@ class StockBoard extends Component {
    }})
 
     .then(res => {
-        
-        
 
         //commented out for now because API has exceeded limit and doesn't work
 
         this.setState({data: res.data["Time Series (Daily)"]["2021-03-02"], 
         open: res.data["Time Series (Daily)"]["2021-03-02"]["1. open"], 
-        close: res.data["Time Series (Daily)"]["2021-03-02"]["4. close"], fetched: true})
-        
+        close: res.data["Time Series (Daily)"]["2021-03-02"]["4. close"], fetched: true}) 
+
         console.log("state data: " + this.state.data)
         
-
-
     })
     .catch((error) => {
       console.log(error);
@@ -118,12 +133,13 @@ class StockBoard extends Component {
     console.log("username: " +this.props.username);
       const posts = this.state.allStocks;
       const allPosts = posts.map((stock) => {
-          
+         
           return (
             <Stock classname="stockComponent"
               open= {stock.open}
               close= {stock.close}
               id={posts.id}
+              delete={this.deleteStockInfo}
               name = {stock.name}
             />
           );
@@ -136,7 +152,12 @@ class StockBoard extends Component {
         <button className="addStock" onClick={() => this.saveStock(this.props.username, this.props.stock)}> Add Stock to Portfolio</button>
         <button className="deleteStock" onClick={this.deletePosting}>Delete Stock From Portfolio </button>
         <button className="refresh" onClick={() => this.fetchStocks(this.props.username)}>Refresh</button>
+        <center>
+        <button className="Stock-buttons" onClick={() => this.saveStock(this.props.username, this.props.stock)}> Add Stock to Portfolio</button>
         <br></br>
+        <button className="center" onClick={() => this.fetchStocks(this.props.username)}>Refresh</button>
+        <br></br>
+        </center>
         <div className="allPosts">
         {allPosts}
         </div>
