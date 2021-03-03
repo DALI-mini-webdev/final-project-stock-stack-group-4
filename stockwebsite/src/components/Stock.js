@@ -23,7 +23,7 @@ class Stock extends Component{
             <p className="stockText">The stock's percent change is {percentChange} %</p>
             <p className="stockText">The stock's opening value is {this.props.open}</p>
             <p className="stockText">The stock's closing value is {this.props.close}</p>
-            <button onClick={this.deletePosting} >Delete!</button>
+            <button className="deleteStock" onClick={this.deletePosting} >Delete!</button>
             </div>
         )
     }

@@ -4,7 +4,7 @@
 }
 
 .App-header {
-  background-color: #000000;
+  background-color: #474343;
   min-height: 10vh;
   display: flex;
   flex-direction: column;
@@ -20,7 +20,7 @@
 }
 
 .App-body {
-  background-color: #000000;
+  background-color: #474343;
   min-height: 10vh;
   display: flex;
   flex-direction: column;
@@ -33,15 +33,15 @@
 .Title {
   font-size: 50px;
   margin-top: 50px;
-  color: #636081;
+  color: rgb(13, 44, 63);
 }
 
 .Title-line {
   font-size: 30px;
   line-height: 10px;
-  color: #636081;
+  color: rgb(13, 44, 63);
   margin-bottom: 100px;
-  color: #636081;
+  color: rgb(13, 44, 63);
   margin-bottom: 60px;
 }
 
@@ -50,7 +50,7 @@
 }
 
 .Submit-button {
-  background-color:#636081;
+  background-color:rgb(7, 56, 88);
   color: white;
   padding: 10px;
 }
@@ -60,7 +60,8 @@
   margin-right: center;
   border-radius: 12px;
   background-color:#636081;
-  color: white;
+  background-color:#6f7374e5;
+  color: rgb(7, 56, 88);
   margin-bottom: 10px;
   justify-content: center;  
   align-items: center;  

@@ -137,7 +137,6 @@ class StockBoard extends Component {
         <p className="center"> Your Stock Board </p>
         
         <button className="addStock" onClick={() => this.saveStock(this.props.username, this.props.stock)}> Add Stock to Portfolio</button>
-        <button className="deleteStock" onClick={this.deletePosting}>Delete Stock From Portfolio </button>
         <center>
         <button className="refresh" onClick={() => this.fetchStocks(this.props.username)}>Refresh</button>
         <br></br>

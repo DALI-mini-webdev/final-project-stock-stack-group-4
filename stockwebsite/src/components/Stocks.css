@@ -1,7 +1,7 @@
 .stock {
   width: 20rem;
   height: 180px;
-  background-color: #636081;
+  background-color: rgb(7, 56, 88);
   margin: 12px;
   display: inline-block;
   text-align: center;
@@ -29,7 +29,7 @@
 }
 
 .addStock {
-    background-color:#636081;
+    background-color:rgb(7, 56, 88);;
     color: white;
     padding: 8px;
     display: block;
@@ -40,7 +40,7 @@
 }
 
 .deleteStock {
-    background-color:#636081;
+    background-color:rgb(7, 56, 88);;
     color: white;
     padding: 8px;
     display: block;
@@ -51,7 +51,7 @@
 }
 
 .refresh {
-    background-color:#636081;
+    background-color:rgb(7, 56, 88);;
     color: white;
     padding: 8px;
     display: block;
