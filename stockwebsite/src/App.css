@@ -52,7 +52,8 @@
 .Submit-button {
   background-color:rgb(7, 56, 88);
   color: white;
-  padding: 10px;
+  padding: 6px;
+  font-size: 20px;
 }
 
 .Stock-buttons {
