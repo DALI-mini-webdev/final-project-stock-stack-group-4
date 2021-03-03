@@ -77,6 +77,7 @@ class App extends Component{
       console.log(this.state.isLoggedIn);
       console.log("true option");
       var sayHello = 'Welcome, ' + this.state.username + '!'
+
       return (
         <div className = "App-header">
 

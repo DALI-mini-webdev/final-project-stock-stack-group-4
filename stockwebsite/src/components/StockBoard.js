@@ -17,7 +17,7 @@ class StockBoard extends Component {
       close: '',
       id: 0,
       fetched: false,
-      
+      ShowingStocks: false
     }
   }
 
@@ -72,6 +72,13 @@ class StockBoard extends Component {
         console.log(error);
       })
    
+  }
+
+  handleClick = (event) => {
+    this.setState({ ShowingStocks: true})
+    console.log("show my stocks button clicked")
+    console.log(this.state.ShowingStocks)
+    this.fetchStocks(this.props.username)
   }
 
   fetchStocks = (username) => {
@@ -134,37 +141,53 @@ class StockBoard extends Component {
  
   render() {
       
-    console.log(this.props.stock);
-    console.log("username: " +this.props.username);
-      const posts = this.state.allStocks;
-      const allPosts = posts.map((stock) => {
-         
-          return (
-            <Stock classname="stockComponent"
-              open= {stock.open}
-              close= {stock.close}
-              id={posts.id}
-              delete={this.deleteStockInfo}
-              name = {stock.name}
-            />
-          );
-        }
-      );
-    return (
-      <div>
-        <p className="center"> Your Stock Board </p>
-        <center>
-        <button className="Stock-buttons" onClick={() => this.saveStock(this.props.username, this.props.stock)}> Add Stock to Portfolio</button>
+    if(this.state.ShowingStocks === false) {
+      return (
+        <div className = "App-header">
+
+        <button className="center" onClick={this.handleClick}>Show My Stocks</button>
+
         <br></br>
-        <button className="center" onClick={() => this.fetchStocks(this.props.username)}>Refresh</button>
-        <br></br>
-        </center>
-        <div className="allPosts">
-        {allPosts}
+
         </div>
-       
-      </div>
-    );
+      )
+    }
+
+    if(this.state.ShowingStocks === true) {
+
+
+      console.log(this.props.stock);
+      console.log("username: " +this.props.username);
+        const posts = this.state.allStocks;
+        const allPosts = posts.map((stock) => {
+          
+            return (
+              <Stock classname="stockComponent"
+                open= {stock.open}
+                close= {stock.close}
+                id={posts.id}
+                delete={this.deleteStockInfo}
+                name = {stock.name}
+              />
+            );
+          }
+        );
+      return (
+        <div>
+          <p className="center"> Your Stock Board </p>
+          <center>
+          <button className="Stock-buttons" onClick={() => this.saveStock(this.props.username, this.props.stock)}> Add Stock to Portfolio</button>
+          <br></br>
+          <button className="center" onClick={() => this.fetchStocks(this.props.username)}>Refresh</button>
+          <br></br>
+          </center>
+          <div className="allPosts">
+          {allPosts}
+          </div>
+        
+        </div>
+      );
+    }
   }
 }
 
