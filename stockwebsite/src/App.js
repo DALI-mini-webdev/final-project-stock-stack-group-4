@@ -13,10 +13,12 @@ class App extends Component{
   constructor(props){
     super(props);
     this.state = {
-      isLoggedIn: false,
-      data: []
+      isLoggedIn: true,
+      username: '',
+      data: [], 
     }
     this.handleClick = this.handleClick.bind(this);
+    
   }
 
 
@@ -60,27 +62,26 @@ class App extends Component{
     }
   }
 
-  handleClick(event) {
-    this.setState ={ isLoggedIn: true} 
+  handleClick = (event) => {
+    this.setState ={isLoggedIn: true} 
     console.log("button clicked")
+  
 
   }
 
+  
+
+  onChangeFunction = (event) => {
+    this.setState({username: event.target.value})
+
+  }
+
+
+
   render() {
 
-    const onChangeFunction = (event) => {
-      console.log(event.target.value);
-      document.addEventListener("keyup", function(event) {
-        if (event.code === 'Enter') {
-          var username = event.target.value
-          this.setState = ({ isLoggedIn: true });
-          console.log(this.state.isLoggedIn);
-        }
-      return username
-      });
-
-    }
-
+    
+    console.log(this.state.isLoggedIn)
     if(this.state.isLoggedIn === true) {
       console.log(this.state.isLoggedIn);
       console.log("true option");
@@ -94,7 +95,7 @@ class App extends Component{
           {/* <h1>{ sayHello }</h1> */}
 
           
-          <button  onClick = {this.fetchData}>click to fetch data</button>
+          <button onClick = {this.fetchData}>click to fetch data</button>
           {this.renderData()}
   
 
@@ -106,7 +107,9 @@ class App extends Component{
           <Dropdown.Item as="button">PNRA</Dropdown.Item>
           </DropdownButton>
 
-          <StockBoard></StockBoard>
+        
+
+          <StockBoard username={this.state.username}></StockBoard>
   
           <br></br>
           <p></p>
@@ -126,7 +129,7 @@ class App extends Component{
   
           
           <p className="Name-enter">Enter your username below:</p>
-          <input type="text" onChange={onChangeFunction}/>
+          <input type="text" onChange={this.onChangeFunction}/>
           <br></br>
           <br></br>
           <br></br>
