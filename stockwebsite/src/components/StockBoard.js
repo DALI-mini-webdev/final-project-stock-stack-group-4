@@ -3,6 +3,7 @@ import Firebase from '../firestore/index';
 import Stock from './Stock';
 import axios from 'axios';
 import './Stocks.css';
+import DropdownButton from 'react-bootstrap/DropdownButton';
 
 
 class StockBoard extends Component {
