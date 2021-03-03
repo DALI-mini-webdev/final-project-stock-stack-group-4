@@ -25,13 +25,7 @@ class StockBoard extends Component {
     console.log("deleted")
   }
 
-
-
-
-
   saveStock = async (username, sName) => { 
-
- 
 
       //username and stock Name parameters need to be filled with input from the text box and drop down
    
@@ -56,16 +50,13 @@ class StockBoard extends Component {
             }).catch(error => {
           console.log(error.message)
           });
-            
-        
+              
       })
       .catch((error) => {
         console.log(error);
       })
-
    
   }
-
 
   fetchStocks = (username) => {
     const stockList = [];
@@ -104,8 +95,7 @@ class StockBoard extends Component {
         //commented out for now because API has exceeded limit and doesn't work
         this.setState({data: res.data["Time Series (Daily)"]["2020-12-15"], 
         open: res.data["Time Series (Daily)"]["2020-12-15"]["1. open"], 
-        close: res.data["Time Series (Daily)"]["2020-12-15"]["4. close"], fetched: true})
-        
+        close: res.data["Time Series (Daily)"]["2020-12-15"]["4. close"], fetched: true})      
 
     })
     .catch((error) => {
@@ -113,8 +103,6 @@ class StockBoard extends Component {
     })
     }
   }
-
-
  
   render() {
       
@@ -135,19 +123,18 @@ class StockBoard extends Component {
       );
     return (
       <div>
-        <p className="center"> Stock Board </p>
+        <p className="center"> Your Stock Board </p>
         
-
         <button className="center" onClick={() => this.saveStock(this.props.username, this.props.stock)}> Add Stock to Portfolio</button>
+        <br></br>
         <button className="center" onClick={this.deletePosting}>Delete Stock From Portfolio </button>
-
+        <br></br>
         <button className="center" onClick={() => this.fetchStocks(this.props.username)}>Refresh</button>
+        <br></br>
         <div className="allPosts">
         {allPosts}
         </div>
        
-
-      
       </div>
     );
   }
