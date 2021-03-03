@@ -76,9 +76,10 @@ class StockBoard extends Component {
 
   fetchStocks = (username) => {
     const stockList = [];
+    this.setState({ButtonDisplay: "Add A Stock"})
     
     //'username' parameter needs to be something from the text box
-    Firebase.db.collection('/users/' + username + '/stocks').get()
+    Firebase.db.collection('/users' + username + 'stocks').get()
       .then(querySnapshot => {
         querySnapshot.forEach( doc => {
           console.log(doc.data());
@@ -95,6 +96,7 @@ class StockBoard extends Component {
       .catch(err => {
         console.log(err.message)
       })
+      
   }
 
   fetchData = (stock) =>{
@@ -151,11 +153,12 @@ class StockBoard extends Component {
     return (
       <div>
         <p className="center"> Your Stock Board </p>
-        
-        <button className="center" onClick={() => this.saveStock(this.props.username, this.props.stock)}> Add Stock to Portfolio</button>
+        <center>
+        <button className="Stock-buttons" onClick={() => this.saveStock(this.props.username, this.props.stock)}> Add Stock to Portfolio</button>
         <br></br>
         <button className="center" onClick={() => this.fetchStocks(this.props.username)}>Refresh</button>
         <br></br>
+        </center>
         <div className="allPosts">
         {allPosts}
         </div>

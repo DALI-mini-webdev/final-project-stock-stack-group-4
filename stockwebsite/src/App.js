@@ -18,7 +18,8 @@ class App extends Component{
       isLoggedIn: false,
       username: '',
       stock: '',
-      data: [], 
+      data: [],
+      ButtonDisplay: "Add A Stock"
     }
 
     this.handleClick = this.handleClick.bind(this);
@@ -44,7 +45,11 @@ class App extends Component{
   handleClick = (event) => {
     this.setState({ isLoggedIn: true})
     console.log("button clicked")
-    
+  }
+
+  handleClickOpposite = (event) => {
+    this.setState({ isLoggedIn: false})
+    console.log("button clicked")
   }
 
   onChangeFunction = (event) => {
@@ -54,6 +59,7 @@ class App extends Component{
   chooseStock = (stockName) =>{
     this.setState({stock: stockName})
     console.log(this.state.stock)
+    this.setState({ButtonDisplay: stockName})
   }
 
 
@@ -73,16 +79,19 @@ class App extends Component{
       var sayHello = 'Welcome, ' + this.state.username + '!'
       return (
         <div className = "App-header">
-          
+
           
           <p className="Title">A Bear of a Project</p>
           <p className="Title-line">______________</p>
 
           <h1 className="Welcome">{ sayHello }</h1>
+          <button className="Submit-button" onClick={this.handleClickOpposite}> Logout </button>
+
 
           <br></br>
+      
 
-      <DropdownButton id="dropdown-item-button" title="Add a Stock">
+      <DropdownButton id="dropdown-item-button" title={this.state.ButtonDisplay}>
       <Dropdown.Item as="button" onClick = {()=>this.chooseStock("AAPL")}>AAPL</Dropdown.Item>
       <Dropdown.Item as="button" onClick = {()=>this.chooseStock("NFLX")}>NFLX</Dropdown.Item>
       <Dropdown.Item as="button" onClick = {()=>this.chooseStock("IRBT")}>IRBT</Dropdown.Item>
